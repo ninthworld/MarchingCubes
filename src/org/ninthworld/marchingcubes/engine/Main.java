@@ -59,7 +59,7 @@ public class Main {
 
     private void setup(){
 
-        /*float[] vertices = {
+        float[] vertices = {
                 0, 0, 0,
                 1, 0, 0,
                 1, 0, 1
@@ -90,16 +90,16 @@ public class Main {
         List<ModelEntity> rawModel1EntityList = new ArrayList<>();
         rawModel1EntityList.add(modelEntity1);
 
-        modelEntities.put(rawModel1, rawModel1EntityList);*/
+        modelEntities.put(rawModel1, rawModel1EntityList);
 
-        VoxelData voxelData = new VoxelData(1, 1, 1);
-        voxelData.setVoxelDataAt(0, 0, 0, 1);
-        VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
-
-        List<ModelEntity> voxelEntityList = new ArrayList<>();
-        voxelEntityList.add(voxelEntity);
-
-        modelEntities.put(voxelEntity.getRawModel(), voxelEntityList);
+//        VoxelData voxelData = new VoxelData(1, 1, 1);
+//        voxelData.setVoxelDataAt(0, 0, 0, 1);
+//        VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
+//
+//        List<ModelEntity> voxelEntityList = new ArrayList<>();
+//        voxelEntityList.add(voxelEntity);
+//
+//        modelEntities.put(voxelEntity.getRawModel(), voxelEntityList);
 
         loop();
     }
@@ -108,12 +108,12 @@ public class Main {
         while(!Display.isCloseRequested()){
             camera.move();
 
-            //multisampleFbo.bindFrameBuffer();
+            multisampleFbo.bindFrameBuffer();
             masterRenderer.renderScene(modelEntities, light, camera);
-            //multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.unbindFrameBuffer();
 
-            //multisampleFbo.resolveToFbo(outputFbo);
-            //PostProcessing.doPostProcessing(outputFbo.getColorTexture());
+            multisampleFbo.resolveToFbo(outputFbo);
+            PostProcessing.doPostProcessing(outputFbo.getColorTexture());
 
             DisplayManager.updateDisplay();
         }
