@@ -58,48 +58,14 @@ public class Main {
     }
 
     private void setup(){
+        VoxelData voxelData = new VoxelData(1, 1, 1);
+        voxelData.setVoxelDataAt(0, 0, 0, 1);
+        VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
 
-        float[] vertices = {
-                0, 0, 0,
-                1, 0, 0,
-                1, 0, 1
-        };
+        List<ModelEntity> voxelEntityList = new ArrayList<>();
+        voxelEntityList.add(voxelEntity);
 
-        float[] colors = {
-                1, 1, 1,
-                1, 1, 1,
-                1, 1, 1
-        };
-
-        float[] normals = {
-                0, 1, 0,
-                0, 1, 0,
-                0, 1, 0
-        };
-
-        int[] indices = {
-                0, 1, 2
-        };
-
-        // Add Raw Model
-        RawModel rawModel1 = loader.loadToVao(vertices, colors, normals, indices);
-
-        // Add Raw Model to entities list
-        ModelEntity modelEntity1 = new ModelEntity(rawModel1);
-
-        List<ModelEntity> rawModel1EntityList = new ArrayList<>();
-        rawModel1EntityList.add(modelEntity1);
-
-        modelEntities.put(rawModel1, rawModel1EntityList);
-
-//        VoxelData voxelData = new VoxelData(1, 1, 1);
-//        voxelData.setVoxelDataAt(0, 0, 0, 1);
-//        VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
-//
-//        List<ModelEntity> voxelEntityList = new ArrayList<>();
-//        voxelEntityList.add(voxelEntity);
-//
-//        modelEntities.put(voxelEntity.getRawModel(), voxelEntityList);
+        modelEntities.put(voxelEntity.getRawModel(), voxelEntityList);
 
         loop();
     }
@@ -108,11 +74,13 @@ public class Main {
         while(!Display.isCloseRequested()){
             camera.move();
 
-            multisampleFbo.bindFrameBuffer();
+            //multisampleFbo.bindFrameBuffer();
+            outputFbo.bindFrameBuffer();
             masterRenderer.renderScene(modelEntities, light, camera);
-            multisampleFbo.unbindFrameBuffer();
+            outputFbo.unbindFrameBuffer();
+            //multisampleFbo.unbindFrameBuffer();
 
-            multisampleFbo.resolveToFbo(outputFbo);
+            //multisampleFbo.resolveToFbo(outputFbo);
             PostProcessing.doPostProcessing(outputFbo.getColorTexture());
 
             DisplayManager.updateDisplay();

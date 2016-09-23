@@ -41,7 +41,8 @@ public class MasterRenderer {
 
         mainShader.start();
         mainShader.loadLight(light);
-        mainShader.loadViewMatrix(camera);
+        //mainShader.loadViewMatrix(camera);
+        mainShader.loadViewMatrix(new CameraEntity(new Vector3f(1000, 100, 1000), new Vector3f(0, 213, 0)));
         renderEntities(entities, mainShader);
         mainShader.stop();
     }

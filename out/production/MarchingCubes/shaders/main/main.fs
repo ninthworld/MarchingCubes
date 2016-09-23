@@ -26,5 +26,5 @@ void main(void){
 
     float tintLevel = 0.6;
     vec3 diffuse = mix(vec3(1 - tintLevel, 0.5, tintLevel), vec3(tintLevel, 0.5, 1 - tintLevel), (brightness - minLight)/(maxLight - minLight));
-    out_Color = vec4(fragColor, 1.0);
+    out_Color = vec4(1, 0, 0, 1); //vec4(fragColo4, 1.0);
 }
