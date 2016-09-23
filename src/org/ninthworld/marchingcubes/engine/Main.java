@@ -5,8 +5,10 @@ import org.lwjgl.util.vector.Vector3f;
 import org.ninthworld.marchingcubes.entities.CameraEntity;
 import org.ninthworld.marchingcubes.entities.LightEntity;
 import org.ninthworld.marchingcubes.entities.ModelEntity;
+import org.ninthworld.marchingcubes.entities.VoxelEntity;
 import org.ninthworld.marchingcubes.fbo.Fbo;
 import org.ninthworld.marchingcubes.fbo.PostProcessing;
+import org.ninthworld.marchingcubes.helper.VoxelData;
 import org.ninthworld.marchingcubes.models.Loader;
 import org.ninthworld.marchingcubes.models.RawModel;
 import org.ninthworld.marchingcubes.renderers.*;
@@ -57,7 +59,7 @@ public class Main {
 
     private void setup(){
 
-        float[] vertices = {
+        /*float[] vertices = {
                 0, 0, 0,
                 1, 0, 0,
                 1, 0, 1
@@ -88,7 +90,16 @@ public class Main {
         List<ModelEntity> rawModel1EntityList = new ArrayList<>();
         rawModel1EntityList.add(modelEntity1);
 
-        modelEntities.put(rawModel1, rawModel1EntityList);
+        modelEntities.put(rawModel1, rawModel1EntityList);*/
+
+        VoxelData voxelData = new VoxelData(1, 1, 1);
+        voxelData.setVoxelDataAt(0, 0, 0, 1);
+        VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
+
+        List<ModelEntity> voxelEntityList = new ArrayList<>();
+        voxelEntityList.add(voxelEntity);
+
+        modelEntities.put(voxelEntity.getRawModel(), voxelEntityList);
 
         loop();
     }

@@ -7,30 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a683535-2d03-4861-9bfd-fb647120f058" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/3DEngine.iml" afterPath="$PROJECT_DIR$/MarchingCubes.iml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/engine/DisplayManager.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/DisplayManager.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/engine/Main.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/entities/CameraEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CameraEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/entities/Entity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/Entity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/entities/LightEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/LightEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/entities/ModelEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/ModelEntity.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/fbo/Fbo.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/Fbo.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/fbo/ImageRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/ImageRenderer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/fbo/NoneEffect.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/NoneEffect.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/fbo/PostProcessing.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/PostProcessing.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/helper/MatrixHelper.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/MatrixHelper.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/helper/OBJLoader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/OBJLoader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/helper/ProjectionMatrix.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/ProjectionMatrix.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/helper/TextureData.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/TextureData.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/models/Loader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/models/Loader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/models/RawModel.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/models/RawModel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/renderers/MasterRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/MasterRenderer.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/shaders/AbstractShader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/AbstractShader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/shaders/MainShader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainShader.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/org/ninthworld/threedengine/shaders/NoneShader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/NoneShader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/LowPoly_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/LowPoly_jar.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/main/main.fs" afterPath="$PROJECT_DIR$/res/shaders/main/main.fs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" />
     </list>
     <ignored path="SimpleGeometry.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,7 +29,62 @@
     <favorites_list name="SimpleGeometry" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="578">
+              <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Loader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/models/Loader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="246">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.fs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/shaders/main/main.fs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoxelEntity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoxelData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="29" column="57" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -72,9 +105,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/org/ninthworld/lowpoly/terrain/Terrain.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/lowpoly/helper/MatrixHelper.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/lowpoly/entities/MultiEntity.java" />
         <option value="$PROJECT_DIR$/shaders/main/main.vs" />
         <option value="$PROJECT_DIR$/shaders/terrain/terrain.vs" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/lowpoly/shadows/ShadowBox.java" />
@@ -108,7 +138,6 @@
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/shaders/MainShader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/renderers/DisplayManager.java" />
         <option value="$PROJECT_DIR$/res/shaders/main/main.vs" />
-        <option value="$PROJECT_DIR$/res/shaders/main/main.fs" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/entities/CameraEntity.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/engine/Main.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/engine/DisplayManager.java" />
@@ -123,6 +152,10 @@
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/shaders/AbstractShader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/threedengine/shaders/NoneShader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/DisplayManager.java" />
+        <option value="$PROJECT_DIR$/res/shaders/main/main.fs" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java" />
       </list>
     </option>
   </component>
@@ -219,7 +252,113 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marchingcubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marchingcubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="entities" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="marchingcubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="engine" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -539,28 +678,28 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21987315" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18921776" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29704016" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21987315" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18921776" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29704016" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -576,7 +715,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -585,8 +724,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/threedengine/guis/GuiRenderer.java" />
-    <entry file="file://$PROJECT_DIR$/res/shaders/skybox/skybox.fs" />
     <entry file="file://$PROJECT_DIR$/res/shaders/skybox/skybox.vs" />
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/threedengine/postProcessing/SSAOEffect.java" />
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/threedengine/postProcessing/PostProcessing.java" />
@@ -642,23 +779,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="120" column="8" selection-start-line="120" selection-start-column="8" selection-end-line="124" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/main/main.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -725,7 +845,7 @@
         <state relative-caret-position="136">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -743,7 +863,7 @@
         <state relative-caret-position="170">
           <caret line="10" column="27" selection-start-line="10" selection-start-column="27" selection-end-line="10" selection-end-column="27" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -761,7 +881,7 @@
         <state relative-caret-position="289">
           <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -770,14 +890,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/models/Loader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="17" column="3" selection-start-line="17" selection-start-column="3" selection-end-line="17" selection-end-column="3" />
           <folding />
         </state>
       </provider>
@@ -827,7 +939,7 @@
         <state relative-caret-position="459">
           <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -837,6 +949,50 @@
         <state relative-caret-position="119">
           <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/main/main.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="30" selection-start-line="28" selection-start-column="30" selection-end-line="28" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="29" column="57" selection-start-line="29" selection-start-column="57" selection-end-line="29" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="99" column="41" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/models/Loader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="39" column="37" selection-start-line="39" selection-start-column="37" selection-end-line="39" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
