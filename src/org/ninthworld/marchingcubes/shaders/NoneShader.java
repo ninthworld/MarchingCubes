@@ -5,8 +5,8 @@ package org.ninthworld.marchingcubes.shaders;
  */
 public class NoneShader extends AbstractShader {
 
-	private static final String VERTEX_FILE = "/shaders/postprocessing/none.vs";
-	private static final String FRAGMENT_FILE = "/shaders/postprocessing/none.fs";
+	private static final String VERTEX_FILE = "/shaders/postprocessing/none.vert";
+	private static final String FRAGMENT_FILE = "/shaders/postprocessing/none.frag";
 
 	private int location_colorTexture;
 

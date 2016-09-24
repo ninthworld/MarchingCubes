@@ -35,11 +35,11 @@ public class CameraEntity extends Entity {
         }
 
         if(Keyboard.isKeyDown(Keyboard.KEY_D)){
-            increasePosition(cosYaw * speed, 0, -sinYaw * speed);
+            increasePosition(cosYaw * speed, 0, sinYaw * speed);
         }
 
         if(Keyboard.isKeyDown(Keyboard.KEY_A)){
-            increasePosition(-cosYaw * speed, 0, sinYaw * speed);
+            increasePosition(-cosYaw * speed, 0, -sinYaw * speed);
         }
 
         if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){

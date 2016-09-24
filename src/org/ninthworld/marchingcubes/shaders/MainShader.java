@@ -10,8 +10,8 @@ import org.ninthworld.marchingcubes.helper.MatrixHelper;
  */
 public class MainShader extends AbstractShader {
 
-    private static final String VERTEX_FILE = "/shaders/main/main.vs";
-    private static final String FRAGMENT_FILE = "/shaders/main/main.fs";
+    private static final String VERTEX_FILE = "/shaders/main/main.vert";
+    private static final String FRAGMENT_FILE = "/shaders/main/main.frag";
 
     private int location_transformationMatrix;
     private int location_projectionMatrix;

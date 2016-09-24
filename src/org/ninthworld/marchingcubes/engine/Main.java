@@ -8,16 +8,14 @@ import org.ninthworld.marchingcubes.entities.ModelEntity;
 import org.ninthworld.marchingcubes.entities.VoxelEntity;
 import org.ninthworld.marchingcubes.fbo.Fbo;
 import org.ninthworld.marchingcubes.fbo.PostProcessing;
+import org.ninthworld.marchingcubes.helper.SimplexNoise;
 import org.ninthworld.marchingcubes.helper.VoxelData;
 import org.ninthworld.marchingcubes.models.Loader;
 import org.ninthworld.marchingcubes.models.RawModel;
 import org.ninthworld.marchingcubes.renderers.*;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by NinthWorld on 9/22/2016.
@@ -43,8 +41,8 @@ public class Main {
         PostProcessing.init(loader);
 
         light = new LightEntity(new Vector3f(1, 1, 1), new Vector3f(1, 1, 1));
-        camera = new CameraEntity(new Vector3f(5, 5, 5));
-        camera.setRotation(new Vector3f((float) Math.PI/3f, (float) -Math.PI/3f, 0f));
+        camera = new CameraEntity(new Vector3f(15, 15, 15));
+        camera.setRotation(new Vector3f((float) Math.PI/6f, (float) -Math.PI/6f, 0f));
 
         rawModels = new HashMap<>();
         modelEntities = new HashMap<>();
@@ -58,9 +56,36 @@ public class Main {
     }
 
     private void setup(){
-        VoxelData voxelData = new VoxelData(1, 1, 1);
-        voxelData.setVoxelDataAt(0, 0, 0, 1);
+        VoxelData voxelData = new VoxelData(64, 64, 64);
+
+        Random rand = new Random(1234L);
+        SimplexNoise simplexNoise = new SimplexNoise(128, 0.6, 4321);
+
+        int width = voxelData.getVoxelData().length;
+        int height = voxelData.getVoxelData()[0].length;
+        int depth = voxelData.getVoxelData()[0][0].length;
+
+        Vector3f volumeCenter = new Vector3f(width/2f, height/2f, depth/2f);
+        float radius = 8;
+        float noiseAmp = 16;
+
+        for(int x=0; x<width; x++){
+            for(int y=0; y<height; y++){
+                for(int z=0; z<depth; z++){
+                    Vector3f currentPos = new Vector3f((float) x, (float) y, (float) z);
+
+                    float distToCenter = Vector3f.sub(volumeCenter, currentPos, null).length();
+                    float surfaceDist = radius + (float) simplexNoise.getNoise(x, y, z)*noiseAmp;
+
+                    if(distToCenter < surfaceDist){
+                        voxelData.setVoxelDataAt(x, y, z, (distToCenter < (radius+noiseAmp)/3f ? 1 : (distToCenter >= (radius+noiseAmp)/3f && distToCenter < 2f*(radius+noiseAmp)/3f ? 2 : 3)));
+                    }
+                }
+            }
+        }
+
         VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
+        voxelEntity.setScale(1f);
 
         List<ModelEntity> voxelEntityList = new ArrayList<>();
         voxelEntityList.add(voxelEntity);
@@ -100,7 +125,7 @@ public class Main {
     }
 
     public static void main(String[] args){
-        System.setProperty("org.lwjgl.librarypath", new File("lib/native/windows").getAbsolutePath());
+        //System.setProperty("org.lwjgl.librarypath", new File("lib/native/windows").getAbsolutePath());
         new Main();
     }
 }
