@@ -74,13 +74,11 @@ public class Main {
         while(!Display.isCloseRequested()){
             camera.move();
 
-            //multisampleFbo.bindFrameBuffer();
-            outputFbo.bindFrameBuffer();
+            multisampleFbo.bindFrameBuffer();
             masterRenderer.renderScene(modelEntities, light, camera);
-            outputFbo.unbindFrameBuffer();
-            //multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.unbindFrameBuffer();
 
-            //multisampleFbo.resolveToFbo(outputFbo);
+            multisampleFbo.resolveToFbo(outputFbo);
             PostProcessing.doPostProcessing(outputFbo.getColorTexture());
 
             DisplayManager.updateDisplay();
