@@ -31,6 +31,7 @@ public class VoxelEntity extends ModelEntity {
 
     private static RawModel createVoxelEntity(Loader loader, VoxelData voxelData) {
         VertexAttribData vertexAttribData = new VertexAttribData();
+        vertexAttribData.centerPos = new Vector3f(voxelData.getVoxelData().length/2f, voxelData.getVoxelData()[0].length/2f, voxelData.getVoxelData()[0][0].length/2f);
 
         int[][][][] neighborData = voxelData.getNeighborData();
         for (int bx = 0; bx < neighborData.length; bx++) {
@@ -58,7 +59,7 @@ public class VoxelEntity extends ModelEntity {
                         Vector3f v2 = Vector3f.add(pos, vertexMultiplier[triangleConnectionTable[cubeIndex][i+1]], null);
                         Vector3f v3 = Vector3f.add(pos, vertexMultiplier[triangleConnectionTable[cubeIndex][i+2]], null);
 
-                        vertexAttribData.addTriangle(v1, v2, v3, colorVectors[setColor.get(i%setColor.size())]);
+                        vertexAttribData.addTriangle(v1, v2, v3, setColor.get(i%setColor.size()));//colorVectors[setColor.get(i%setColor.size())]);
                     }
                 }
             }

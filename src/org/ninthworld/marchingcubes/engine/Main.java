@@ -1,5 +1,6 @@
 package org.ninthworld.marchingcubes.engine;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
 import org.ninthworld.marchingcubes.entities.CameraEntity;
@@ -40,14 +41,14 @@ public class Main {
         DisplayManager.createDisplay();
         PostProcessing.init(loader);
 
-        light = new LightEntity(new Vector3f(1, 1, 1), new Vector3f(1, 1, 1));
-        camera = new CameraEntity(new Vector3f(15, 15, 15));
+        light = new LightEntity(new Vector3f(1, 1, 1), new Vector3f(1f, 0.9f, 0.78f));
+        camera = new CameraEntity(new Vector3f(0, 0, 0));
         camera.setRotation(new Vector3f((float) Math.PI/6f, (float) -Math.PI/6f, 0f));
 
         rawModels = new HashMap<>();
         modelEntities = new HashMap<>();
 
-        masterRenderer = new MasterRenderer();
+        masterRenderer = new MasterRenderer(loader);
 
         multisampleFbo = new Fbo(Display.getWidth(), Display.getHeight());
         outputFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
@@ -57,7 +58,6 @@ public class Main {
 
     private void setup(){
         VoxelData voxelData = new VoxelData(64, 64, 64);
-
         float radius = 16;
         float noiseAmp = radius*2;
         SimplexNoise simplexNoise = new SimplexNoise((int)noiseAmp*4, 0.5, (int)(Math.random()*1000));
@@ -77,13 +77,14 @@ public class Main {
                     float surfaceDist = radius + (float) simplexNoise.getNoise(x, y, z)*noiseAmp;
 
                     if(distToCenter < surfaceDist){
-                        voxelData.setVoxelDataAt(x, y, z, (distToCenter < (radius+noiseAmp)/3f ? 1 : (distToCenter >= (radius+noiseAmp)/3f && distToCenter < 2f*(radius+noiseAmp)/3f ? 2 : 3)));
+                        voxelData.setVoxelDataAt(x, y, z, (distToCenter < (radius+noiseAmp)/3f ? 1 : (distToCenter >= (radius+noiseAmp)/3f && distToCenter < 2f*(radius+noiseAmp)/3f ? 2 : 2)));
                     }
                 }
             }
         }
 
         VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
+        voxelEntity.setPosition(new Vector3f(-width*.25f, -height*.25f, -depth*.25f));
         voxelEntity.setScale(0.25f);
 
         List<ModelEntity> voxelEntityList = new ArrayList<>();
@@ -94,9 +95,16 @@ public class Main {
         loop();
     }
 
+    float angle = 0;
     private void loop(){
         while(!Display.isCloseRequested()){
             camera.move();
+            light.setPosition(new Vector3f((float) Math.cos(angle), 0f, (float) Math.sin(angle)));
+
+            if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
+                angle += Math.PI/200f;
+            }
+
 
             multisampleFbo.bindFrameBuffer();
             masterRenderer.renderScene(modelEntities, light, camera);

@@ -1,8 +1,11 @@
 package org.ninthworld.marchingcubes.models;
 
 import de.matthiasmann.twl.utils.PNGDecoder;
+import jdk.jfr.events.ExceptionThrownEvent;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.*;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
 import org.ninthworld.marchingcubes.helper.TextureData;
 
 import java.io.InputStream;
@@ -31,11 +34,32 @@ public class Loader {
         return new RawModel(vaoID, vboID, indices.length);
     }
 
+    public RawModel loadToVaoMaterial(float[] positions, float[] materials, float[] normals, int[] indices){
+        int vaoID = createVAO();
+        int vboID = bindIndicesBuffer(indices);
+        storeDataInAttributeList(0, 3, positions);
+        storeDataInAttributeList(1, 1, materials);
+        storeDataInAttributeList(2, 3, normals);
+        unbindVAO();
+        return new RawModel(vaoID, vboID, indices.length);
+    }
+
     public RawModel loadToVao(float[] positions, int dimesions){
         int vaoID = createVAO();
         this.storeDataInAttributeList(0, dimesions, positions);
         unbindVAO();
         return new RawModel(vaoID, 0, positions.length/dimesions);
+    }
+
+    public int loadTexture(String textureFile){
+        Texture texture = null;
+        try {
+            texture = TextureLoader.getTexture("PNG", getClass().getResourceAsStream(textureFile));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        textures.add(texture.getTextureID());
+        return texture.getTextureID();
     }
 
     public int loadCubeMap(String[] textureFiles){

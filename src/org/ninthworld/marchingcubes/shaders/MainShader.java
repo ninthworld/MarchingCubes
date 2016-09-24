@@ -20,6 +20,12 @@ public class MainShader extends AbstractShader {
     private int location_lightPosition;
     private int location_lightColor;
 
+    private int location_texture0;
+    private int location_texture1;
+
+    private int location_normal0;
+    private int location_normal1;
+
     public MainShader(){
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
@@ -27,7 +33,7 @@ public class MainShader extends AbstractShader {
     @Override
     protected void bindAttributes(){
         super.bindAttribute(0, "position");
-        super.bindAttribute(1, "color");
+        super.bindAttribute(1, "material");
         super.bindAttribute(2, "normal");
     }
 
@@ -39,6 +45,20 @@ public class MainShader extends AbstractShader {
 
         location_lightPosition = super.getUniformLocation("lightPosition");
         location_lightColor = super.getUniformLocation("lightColor");
+
+        location_texture0 = super.getUniformLocation("texture0");
+        location_texture1 = super.getUniformLocation("texture1");
+
+        location_normal0 = super.getUniformLocation("normal0");
+        location_normal1 = super.getUniformLocation("normal1");
+    }
+
+    public void connectTextureUnits(){
+        super.loadInteger(location_texture0, 0);
+        super.loadInteger(location_texture1, 1);
+
+        super.loadInteger(location_normal0, 2);
+        super.loadInteger(location_normal1, 3);
     }
 
     public void loadLight(LightEntity light){
