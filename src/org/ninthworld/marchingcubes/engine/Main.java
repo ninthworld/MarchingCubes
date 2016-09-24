@@ -58,16 +58,15 @@ public class Main {
     private void setup(){
         VoxelData voxelData = new VoxelData(64, 64, 64);
 
-        Random rand = new Random(1234L);
-        SimplexNoise simplexNoise = new SimplexNoise(128, 0.6, 4321);
+        float radius = 16;
+        float noiseAmp = radius*2;
+        SimplexNoise simplexNoise = new SimplexNoise((int)noiseAmp*4, 0.5, (int)(Math.random()*1000));
 
         int width = voxelData.getVoxelData().length;
         int height = voxelData.getVoxelData()[0].length;
         int depth = voxelData.getVoxelData()[0][0].length;
 
         Vector3f volumeCenter = new Vector3f(width/2f, height/2f, depth/2f);
-        float radius = 8;
-        float noiseAmp = 16;
 
         for(int x=0; x<width; x++){
             for(int y=0; y<height; y++){
@@ -85,7 +84,7 @@ public class Main {
         }
 
         VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
-        voxelEntity.setScale(1f);
+        voxelEntity.setScale(0.25f);
 
         List<ModelEntity> voxelEntityList = new ArrayList<>();
         voxelEntityList.add(voxelEntity);

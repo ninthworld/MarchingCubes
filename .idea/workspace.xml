@@ -7,29 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a683535-2d03-4861-9bfd-fb647120f058" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/main/main.fs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/main/main.vs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/none.fs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/none.vs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/main/main.fs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/main/main.vs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/none.fs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/none.vs" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/engine/Main.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/engine/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/CameraEntity.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/CameraEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/VoxelEntity.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/VoxelEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/helper/VoxelData.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/helper/VoxelData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/MasterRenderer.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/MasterRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/MainShader.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/MainShader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/NoneShader.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/NoneShader.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CameraEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CameraEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/MasterRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/MasterRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainShader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainShader.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/NoneShader.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/NoneShader.java" />
     </list>
     <ignored path="SimpleGeometry.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+            <state relative-caret-position="211">
+              <caret line="71" column="40" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VoxelEntity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="VoxelEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="52" column="73" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
+            <state relative-caret-position="-357">
+              <caret line="45" column="62" selection-start-line="45" selection-start-column="62" selection-end-line="45" selection-end-column="62" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -787,12 +765,12 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17124736" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17124736" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1671875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1671875" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1074,20 +1052,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+        <state relative-caret-position="-357">
+          <caret line="45" column="62" selection-start-line="45" selection-start-column="62" selection-end-line="45" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="52" column="73" selection-start-line="52" selection-start-column="73" selection-end-line="52" selection-end-column="73" />
+        <state relative-caret-position="211">
+          <caret line="71" column="40" selection-start-line="71" selection-start-column="40" selection-end-line="71" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
