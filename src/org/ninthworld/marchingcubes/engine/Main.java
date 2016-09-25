@@ -3,10 +3,7 @@ package org.ninthworld.marchingcubes.engine;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Vector3f;
-import org.ninthworld.marchingcubes.entities.CameraEntity;
-import org.ninthworld.marchingcubes.entities.LightEntity;
-import org.ninthworld.marchingcubes.entities.ModelEntity;
-import org.ninthworld.marchingcubes.entities.VoxelEntity;
+import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.fbo.Fbo;
 import org.ninthworld.marchingcubes.fbo.PostProcessing;
 import org.ninthworld.marchingcubes.helper.SimplexNoise;
@@ -29,11 +26,13 @@ public class Main {
 
     private LightEntity light;
     private CameraEntity camera;
-    private Map<String, RawModel> rawModels;
-    private Map<RawModel, List<ModelEntity>> modelEntities;
 
     private Fbo multisampleFbo;
     private Fbo outputFbo;
+
+    private Map<RawModel, List<ModelEntity>> modelEntities;
+    private List<AsteroidEntity> asteroidEntities;
+    private List<CuboidEntity> cuboidEntities;
 
     public Main(){
         loader = new Loader();
@@ -41,12 +40,15 @@ public class Main {
         DisplayManager.createDisplay();
         PostProcessing.init(loader);
 
-        light = new LightEntity(new Vector3f(1, 1, 1), new Vector3f(1f, 0.9f, 0.78f));
-        camera = new CameraEntity(new Vector3f(0, 0, 0));
+        light = new LightEntity(new Vector3f(1, 1, 1), new Vector3f(1f, 0.8f, 0.4f));
+        light.setAmbient(new Vector3f(0.1f, 0.1f, 0.2f));
+
+        camera = new CameraEntity(new Vector3f(5, 5, 5));
         camera.setRotation(new Vector3f((float) Math.PI/6f, (float) -Math.PI/6f, 0f));
 
-        rawModels = new HashMap<>();
         modelEntities = new HashMap<>();
+        asteroidEntities = new ArrayList<>();
+        cuboidEntities = new ArrayList<>();
 
         masterRenderer = new MasterRenderer(loader);
 
@@ -57,40 +59,20 @@ public class Main {
     }
 
     private void setup(){
-        VoxelData voxelData = new VoxelData(64, 64, 64);
-        float radius = 16;
-        float noiseAmp = radius*2;
-        SimplexNoise simplexNoise = new SimplexNoise((int)noiseAmp*4, 0.5, (int)(Math.random()*1000));
 
-        int width = voxelData.getVoxelData().length;
-        int height = voxelData.getVoxelData()[0].length;
-        int depth = voxelData.getVoxelData()[0][0].length;
+        AsteroidEntity asteroidEntity = new AsteroidEntity(loader, new Vector3f(0, 0, 0), 64, 16, 32, 128, 0.5, 12345);
+        asteroidEntities.add(asteroidEntity);
 
-        Vector3f volumeCenter = new Vector3f(width/2f, height/2f, depth/2f);
+        AsteroidEntity asteroidEntity1 = new AsteroidEntity(loader, new Vector3f(-64, 64, 64), 32, 8, 16, 64, 0.5, 54321);
+        asteroidEntities.add(asteroidEntity1);
 
-        for(int x=0; x<width; x++){
-            for(int y=0; y<height; y++){
-                for(int z=0; z<depth; z++){
-                    Vector3f currentPos = new Vector3f((float) x, (float) y, (float) z);
+        float cubicLength = asteroidEntity.getVoxelData().getVoxelData().length*asteroidEntity.getScale();
+        CuboidEntity cuboidEntity = new CuboidEntity(loader, asteroidEntity.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
+        cuboidEntities.add(cuboidEntity);
 
-                    float distToCenter = Vector3f.sub(volumeCenter, currentPos, null).length();
-                    float surfaceDist = radius + (float) simplexNoise.getNoise(x, y, z)*noiseAmp;
-
-                    if(distToCenter < surfaceDist){
-                        voxelData.setVoxelDataAt(x, y, z, (distToCenter < (radius+noiseAmp)/3f ? 1 : (distToCenter >= (radius+noiseAmp)/3f && distToCenter < 2f*(radius+noiseAmp)/3f ? 2 : 2)));
-                    }
-                }
-            }
-        }
-
-        VoxelEntity voxelEntity = new VoxelEntity(loader, voxelData);
-        voxelEntity.setPosition(new Vector3f(-width*.25f, -height*.25f, -depth*.25f));
-        voxelEntity.setScale(0.25f);
-
-        List<ModelEntity> voxelEntityList = new ArrayList<>();
-        voxelEntityList.add(voxelEntity);
-
-        modelEntities.put(voxelEntity.getRawModel(), voxelEntityList);
+        cubicLength = asteroidEntity1.getVoxelData().getVoxelData().length*asteroidEntity1.getScale();
+        CuboidEntity cuboidEntity1 = new CuboidEntity(loader, asteroidEntity1.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
+        cuboidEntities.add(cuboidEntity1);
 
         loop();
     }
@@ -99,15 +81,17 @@ public class Main {
     private void loop(){
         while(!Display.isCloseRequested()){
             camera.move();
-            light.setPosition(new Vector3f((float) Math.cos(angle), 0f, (float) Math.sin(angle)));
+            light.setPosition(new Vector3f((float) Math.cos(angle)*10f, 5f, (float) Math.sin(angle)*10f));
 
             if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
                 angle += Math.PI/200f;
             }
-
+            if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){
+                angle -= Math.PI/200f;
+            }
 
             multisampleFbo.bindFrameBuffer();
-            masterRenderer.renderScene(modelEntities, light, camera);
+            masterRenderer.renderScene(modelEntities, asteroidEntities, cuboidEntities, light, camera);
             multisampleFbo.unbindFrameBuffer();
 
             multisampleFbo.resolveToFbo(outputFbo);

@@ -8,10 +8,10 @@ import org.ninthworld.marchingcubes.helper.MatrixHelper;
 /**
  * Created by NinthWorld on 9/22/2016.
  */
-public class MainShader extends AbstractShader {
+public class CuboidShader extends AbstractShader {
 
-    private static final String VERTEX_FILE = "/shaders/main/main.vert";
-    private static final String FRAGMENT_FILE = "/shaders/main/main.frag";
+    private static final String VERTEX_FILE = "/shaders/cuboid/cuboid.vert";
+    private static final String FRAGMENT_FILE = "/shaders/cuboid/cuboid.frag";
 
     private int location_transformationMatrix;
     private int location_projectionMatrix;
@@ -21,20 +21,14 @@ public class MainShader extends AbstractShader {
     private int location_lightColor;
     private int location_lightAmbient;
 
-    private int location_texture0;
-    private int location_texture1;
-
-    private int location_normal0;
-    private int location_normal1;
-
-    public MainShader(){
+    public CuboidShader(){
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
 
     @Override
     protected void bindAttributes(){
         super.bindAttribute(0, "position");
-        super.bindAttribute(1, "material");
+        super.bindAttribute(1, "color");
         super.bindAttribute(2, "normal");
     }
 
@@ -47,21 +41,9 @@ public class MainShader extends AbstractShader {
         location_lightPosition = super.getUniformLocation("lightPosition");
         location_lightColor = super.getUniformLocation("lightColor");
         location_lightAmbient = super.getUniformLocation("lightAmbient");
-
-
-        location_texture0 = super.getUniformLocation("texture0");
-        location_texture1 = super.getUniformLocation("texture1");
-
-        location_normal0 = super.getUniformLocation("normal0");
-        location_normal1 = super.getUniformLocation("normal1");
     }
 
     public void connectTextureUnits(){
-        super.loadInteger(location_texture0, 0);
-        super.loadInteger(location_texture1, 1);
-
-        super.loadInteger(location_normal0, 2);
-        super.loadInteger(location_normal1, 3);
     }
 
     public void loadLight(LightEntity light){

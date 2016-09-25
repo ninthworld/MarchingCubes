@@ -13,20 +13,19 @@ import java.util.List;
 public class VertexAttribData {
 
     private List<Float> verticesList;
+    private List<Float> colorsList;
     private List<Float> materialsList;
     private List<Float> normalsList;
     private List<Integer> indicesList;
     private int indicesPointer;
 
-    public Vector3f centerPos;
-
     public VertexAttribData(){
         this.verticesList = new ArrayList<>();
         this.materialsList = new ArrayList<>();
+        this.colorsList = new ArrayList<>();
         this.normalsList = new ArrayList<>();
         this.indicesList = new ArrayList<>();
         this.indicesPointer = 0;
-        this.centerPos = new Vector3f();
     }
 
     public void addTriangle(Vector3f v1, Vector3f v2, Vector3f v3, int material) {
@@ -54,13 +53,48 @@ public class VertexAttribData {
         }
     }
 
-    public RawModel loadToVao(Loader loader) {
+    public void addTriangle(Vector3f v1, Vector3f v2, Vector3f v3, Vector3f color) {
+        Vector3f normal = new Vector3f();
+        Vector3f.cross(Vector3f.sub(v2, v1, null), Vector3f.sub(v3, v1, null), normal);
+        normal.normalise();
+
+        verticesList.add(v1.x);
+        verticesList.add(v1.y);
+        verticesList.add(v1.z);
+        verticesList.add(v2.x);
+        verticesList.add(v2.y);
+        verticesList.add(v2.z);
+        verticesList.add(v3.x);
+        verticesList.add(v3.y);
+        verticesList.add(v3.z);
+
+        for (int i = 0; i < 3; i++) {
+            colorsList.add(color.x);
+            colorsList.add(color.y);
+            colorsList.add(color.z);
+            normalsList.add(normal.x);
+            normalsList.add(normal.y);
+            normalsList.add(normal.z);
+            indicesList.add(indicesPointer++);
+        }
+    }
+
+    public RawModel loadToVaoMaterial(Loader loader) {
         float[] vertices = getFloatArray(verticesList);
         float[] materials = getFloatArray(materialsList);
         float[] normals = getFloatArray(normalsList);
         int[] indices  = getIntArray(indicesList);
 
         return loader.loadToVaoMaterial(vertices, materials, normals, indices);
+    }
+
+    public RawModel loadToVaoColor(Loader loader) {
+        float[] vertices = getFloatArray(verticesList);
+        float[] colors = getFloatArray(colorsList);
+        float[] normals = getFloatArray(normalsList);
+        int[] indices  = getIntArray(indicesList);
+
+        return loader.loadToVao(vertices, colors, normals, indices);
     }
 
     private static float[] getFloatArray(List<Float> list){

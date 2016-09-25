@@ -23,15 +23,21 @@ public class VoxelEntity extends ModelEntity {
 
     private VoxelData voxelData;
 
-    public VoxelEntity(Loader loader, VoxelData voxelData) {
+    public VoxelEntity(VoxelData voxelData) {
         super(null);
         this.voxelData = voxelData;
+    }
+
+    public void generateRawModel(Loader loader){
         this.setRawModel(createVoxelEntity(loader, this.voxelData));
+    }
+
+    public VoxelData getVoxelData(){
+        return voxelData;
     }
 
     private static RawModel createVoxelEntity(Loader loader, VoxelData voxelData) {
         VertexAttribData vertexAttribData = new VertexAttribData();
-        vertexAttribData.centerPos = new Vector3f(voxelData.getVoxelData().length/2f, voxelData.getVoxelData()[0].length/2f, voxelData.getVoxelData()[0][0].length/2f);
 
         int[][][][] neighborData = voxelData.getNeighborData();
         for (int bx = 0; bx < neighborData.length; bx++) {
@@ -64,7 +70,7 @@ public class VoxelEntity extends ModelEntity {
                 }
             }
         }
-        return vertexAttribData.loadToVao(loader);
+        return vertexAttribData.loadToVaoMaterial(loader);
     }
 
     private static Vector3f[] vertexMultiplier = new Vector3f[]{

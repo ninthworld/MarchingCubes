@@ -6,6 +6,7 @@ in vec3 fragNormal;
 
 out vec4 out_Color;
 
+uniform vec3 lightAmbient;
 uniform vec3 lightColor;
 uniform vec3 lightPosition;
 uniform mat4 projectionMatrix;
@@ -17,6 +18,8 @@ uniform sampler2D normal0;
 uniform sampler2D normal1;
 
 void main(void){
+    vec3 lightPos = normalize(lightPosition);
+
     // Texture XYZ Blending
     vec3 blending = abs(fragNormal);
     blending = normalize(max(blending, 0.00001));
@@ -25,7 +28,7 @@ void main(void){
 
     // Multi-texture Coords
     float matIndex = fragMaterial - 1.0;
-    float scale = 0.05;
+    float scale = 0.08;
     vec2 xAxis = fragPosition.yz * scale;
     vec2 yAxis = fragPosition.xz * scale;
     vec2 zAxis = fragPosition.xy * scale;
@@ -40,14 +43,14 @@ void main(void){
     vec4 norm1 = texture(normal1, xAxis) * blending.x + texture(normal1, yAxis) * blending.y + texture(normal1, zAxis) * blending.z;
     vec4 blendedNormal = norm0*matIndex + norm1*(1.0 - matIndex);
 
-    vec3 normalTanSpace = normalize(blendedNormal.rgb * 2.0 - 1.0);
+    vec3 normalTanSpace = normalize(blendedNormal.rgb * 2.0 - 1.0) * mat3(1, 0, 0, 0, 0, 1, 0, -1, 0);
 
     // Lighting
-    float cosTheta = dot(normalize(fragNormal - vec3(0, 1, 0) + normalTanSpace), lightPosition);
+    float cosTheta = dot(normalize((normalTanSpace - vec3(0, 1, 0)) + fragNormal), lightPos);
     float brightness = clamp(cosTheta, 0, 1);
 
     vec3 diffuseColor = blendedColor.rgb;
-    vec3 ambientColor = vec3(0.1, 0.1, 0.15) * diffuseColor;
+    vec3 ambientColor = lightAmbient * diffuseColor;
 
     out_Color = vec4(ambientColor + diffuseColor * lightColor * brightness, 1.0);
 }

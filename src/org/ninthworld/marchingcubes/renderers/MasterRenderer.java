@@ -3,13 +3,12 @@ package org.ninthworld.marchingcubes.renderers;
 import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
-import org.ninthworld.marchingcubes.entities.LightEntity;
-import org.ninthworld.marchingcubes.entities.ModelEntity;
+import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.helper.ProjectionMatrix;
-import org.ninthworld.marchingcubes.entities.CameraEntity;
 import org.ninthworld.marchingcubes.helper.MatrixHelper;
 import org.ninthworld.marchingcubes.models.Loader;
 import org.ninthworld.marchingcubes.models.RawModel;
+import org.ninthworld.marchingcubes.shaders.CuboidShader;
 import org.ninthworld.marchingcubes.shaders.MainShader;
 import org.ninthworld.marchingcubes.shaders.AbstractShader;
 
@@ -28,9 +27,12 @@ public class MasterRenderer {
     private static final String normal1 = "/textures/normal1.png";
 
     // private static final Vector3f clearColor = new Vector3f(0.82f, 0.93f, 0.94f);
-    private static final Vector3f clearColor = new Vector3f(0.0f, 0.0f, 0.0f);
+    private static final Vector3f clearColor = new Vector3f(0.05f, 0.05f, 0.05f);
 
     private MainShader mainShader;
+    private CuboidShader cuboidShader;
+
+    private SkyboxRenderer skyboxRenderer;
 
     private int texture0Id;
     private int texture1Id;
@@ -41,7 +43,10 @@ public class MasterRenderer {
     public MasterRenderer(Loader loader){
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glCullFace(GL11.GL_BACK);
-        //GL11.glShadeModel(GL11.GL_FLAT);
+
+        Matrix4f projectionMatrix = ProjectionMatrix.create();
+
+        skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
 
         texture0Id = loader.loadTexture(texture0);
         texture1Id = loader.loadTexture(texture1);
@@ -51,12 +56,33 @@ public class MasterRenderer {
 
         mainShader = new MainShader();
         mainShader.start();
-        mainShader.loadProjectionMatrix(ProjectionMatrix.create());
+        mainShader.loadProjectionMatrix(projectionMatrix);
         mainShader.stop();
+
+        cuboidShader = new CuboidShader();
+        cuboidShader.start();
+        cuboidShader.loadProjectionMatrix(projectionMatrix);
+        cuboidShader.stop();
     }
 
-    public void renderScene(Map<RawModel, List<ModelEntity>> entities, LightEntity light, CameraEntity camera){
+    public void renderScene(Map<RawModel, List<ModelEntity>> entities, List<AsteroidEntity> asteroidEntities, List<CuboidEntity> cuboidEntities, LightEntity light, CameraEntity camera){
         prepare();
+
+        skyboxRenderer.renderSkybox(camera);
+
+        GL11.glEnable(GL11.GL_POLYGON_MODE);
+        GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+        GL11.glDisable(GL11.GL_CULL_FACE);
+
+        cuboidShader.start();
+        cuboidShader.loadLight(light);
+        cuboidShader.loadViewMatrix(camera);
+        renderCuboidEntities(cuboidEntities, cuboidShader);
+        cuboidShader.stop();
+
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glDisable(GL11.GL_POLYGON_MODE);
+        GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture0Id);
@@ -71,8 +97,8 @@ public class MasterRenderer {
         mainShader.connectTextureUnits();
         mainShader.loadLight(light);
         mainShader.loadViewMatrix(camera);
-        //mainShader.loadViewMatrix(new CameraEntity(new Vector3f(1000, 100, 1000), new Vector3f(0, 213, 0)));
         renderEntities(entities, mainShader);
+        renderAsteroidEntities(asteroidEntities, mainShader);
         mainShader.stop();
     }
 
@@ -85,6 +111,24 @@ public class MasterRenderer {
                 GL11.glDrawElements(GL11.GL_TRIANGLES, rawModel.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
             }
 
+            unbindRawModel();
+        }
+    }
+
+    private void renderCuboidEntities(List<CuboidEntity> cuboidEntities, AbstractShader shader){
+        for(CuboidEntity cuboidEntity : cuboidEntities){
+            prepareRawModel(cuboidEntity.getRawModel());
+            prepareEntity(cuboidEntity, shader);
+            GL11.glDrawElements(GL11.GL_TRIANGLES, cuboidEntity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
+            unbindRawModel();
+        }
+    }
+
+    private void renderAsteroidEntities(List<AsteroidEntity> asteroidEntities, AbstractShader shader){
+       for(AsteroidEntity asteroidEntity : asteroidEntities){
+            prepareRawModel(asteroidEntity.getRawModel());
+            prepareEntity(asteroidEntity, shader);
+            GL11.glDrawElements(GL11.GL_TRIANGLES, asteroidEntity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
             unbindRawModel();
         }
     }
@@ -108,11 +152,15 @@ public class MasterRenderer {
 
         if(shader instanceof MainShader){
             ((MainShader) shader).loadTransformationMatrix(transformationMatrix);
+        }else if(shader instanceof CuboidShader){
+            ((CuboidShader) shader).loadTransformationMatrix(transformationMatrix);
         }
     }
 
     public void cleanUp(){
         mainShader.cleanUp();
+        cuboidShader.cleanUp();
+        skyboxRenderer.cleanUp();
     }
 
     public void prepare() {
