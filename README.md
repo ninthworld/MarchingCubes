@@ -1,2 +1,8 @@
 # Marching Cubes
-A 3D game using a custom 3D Engine in LWJGL, uniquely based around the marching cubes algorithm for voxel rendering.
+A 3D Voxel Rendering engine using the marching cubes algorithm.
+* VBO, VAO, FBO implementations
+* Simple face normal lighting + normal mapping
+* Skybox
+* Free roam camera (Mouse, WASD, LShift, Space)
+
+![Marching Cubes Screenshot 1](https://github.com/ninthworld/MarchingCubes/blob/master/screenshots/screenshot1.png)
