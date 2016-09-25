@@ -8,10 +8,10 @@ import org.ninthworld.marchingcubes.helper.MatrixHelper;
 /**
  * Created by NinthWorld on 9/22/2016.
  */
-public class CuboidShader extends AbstractShader {
+public class PlaneShader extends AbstractShader {
 
-    private static final String VERTEX_FILE = "/shaders/geometry/cuboid.vert";
-    private static final String FRAGMENT_FILE = "/shaders/geometry/cuboid.frag";
+    private static final String VERTEX_FILE = "/shaders/geometry/plane.vert";
+    private static final String FRAGMENT_FILE = "/shaders/geometry/plane.frag";
 
     private int location_transformationMatrix;
     private int location_projectionMatrix;
@@ -21,7 +21,7 @@ public class CuboidShader extends AbstractShader {
     private int location_lightColor;
     private int location_lightAmbient;
 
-    public CuboidShader(){
+    public PlaneShader(){
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
 

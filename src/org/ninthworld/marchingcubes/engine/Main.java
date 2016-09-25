@@ -33,6 +33,7 @@ public class Main {
     private Map<RawModel, List<ModelEntity>> modelEntities;
     private List<AsteroidEntity> asteroidEntities;
     private List<CuboidEntity> cuboidEntities;
+    private List<PlaneEntity> planeEntities;
 
     public Main(){
         loader = new Loader();
@@ -49,6 +50,7 @@ public class Main {
         modelEntities = new HashMap<>();
         asteroidEntities = new ArrayList<>();
         cuboidEntities = new ArrayList<>();
+        planeEntities = new ArrayList<>();
 
         masterRenderer = new MasterRenderer(loader);
 
@@ -66,13 +68,23 @@ public class Main {
         AsteroidEntity asteroidEntity1 = new AsteroidEntity(loader, new Vector3f(-64, 64, 64), 32, 8, 16, 64, 0.5, 54321);
         asteroidEntities.add(asteroidEntity1);
 
-        float cubicLength = asteroidEntity.getVoxelData().getVoxelData().length*asteroidEntity.getScale();
-        CuboidEntity cuboidEntity = new CuboidEntity(loader, asteroidEntity.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
-        cuboidEntities.add(cuboidEntity);
+//        float cubicLength = asteroidEntity.getVoxelData().getVoxelData().length*asteroidEntity.getScale();
+//        CuboidEntity cuboidEntity = new CuboidEntity(loader, asteroidEntity.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
+//        cuboidEntities.add(cuboidEntity);
+//
+//        cubicLength = asteroidEntity1.getVoxelData().getVoxelData().length*asteroidEntity1.getScale();
+//        CuboidEntity cuboidEntity1 = new CuboidEntity(loader, asteroidEntity1.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
+//        cuboidEntities.add(cuboidEntity1);
 
-        cubicLength = asteroidEntity1.getVoxelData().getVoxelData().length*asteroidEntity1.getScale();
-        CuboidEntity cuboidEntity1 = new CuboidEntity(loader, asteroidEntity1.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
-        cuboidEntities.add(cuboidEntity1);
+        PlaneEntity planeEntity = new PlaneEntity(loader, new Vector3f(0, 0, 0), new Vector3f(1, 0, 1));
+        float scale = 16;
+        for(int i=-4; i<4; i++){
+            for(int j=-4; j<4; j++){
+                PlaneEntity grid = new PlaneEntity(planeEntity.getRawModel(), new Vector3f(i, 0, j));
+                grid.setScale(scale);
+                planeEntities.add(grid);
+            }
+        }
 
         loop();
     }
@@ -91,7 +103,7 @@ public class Main {
             }
 
             multisampleFbo.bindFrameBuffer();
-            masterRenderer.renderScene(modelEntities, asteroidEntities, cuboidEntities, light, camera);
+            masterRenderer.renderScene(modelEntities, asteroidEntities, cuboidEntities, planeEntities, light, camera);
             multisampleFbo.unbindFrameBuffer();
 
             multisampleFbo.resolveToFbo(outputFbo);

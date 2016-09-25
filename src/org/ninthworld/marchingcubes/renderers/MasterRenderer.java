@@ -11,6 +11,7 @@ import org.ninthworld.marchingcubes.models.RawModel;
 import org.ninthworld.marchingcubes.shaders.CuboidShader;
 import org.ninthworld.marchingcubes.shaders.MainShader;
 import org.ninthworld.marchingcubes.shaders.AbstractShader;
+import org.ninthworld.marchingcubes.shaders.PlaneShader;
 
 import java.util.List;
 import java.util.Map;
@@ -31,6 +32,7 @@ public class MasterRenderer {
 
     private MainShader mainShader;
     private CuboidShader cuboidShader;
+    private PlaneShader planeShader;
 
     private SkyboxRenderer skyboxRenderer;
 
@@ -63,9 +65,14 @@ public class MasterRenderer {
         cuboidShader.start();
         cuboidShader.loadProjectionMatrix(projectionMatrix);
         cuboidShader.stop();
+
+        planeShader = new PlaneShader();
+        planeShader.start();
+        planeShader.loadProjectionMatrix(projectionMatrix);
+        planeShader.stop();
     }
 
-    public void renderScene(Map<RawModel, List<ModelEntity>> entities, List<AsteroidEntity> asteroidEntities, List<CuboidEntity> cuboidEntities, LightEntity light, CameraEntity camera){
+    public void renderScene(Map<RawModel, List<ModelEntity>> entities, List<AsteroidEntity> asteroidEntities, List<CuboidEntity> cuboidEntities, List<PlaneEntity> planeEntities, LightEntity light, CameraEntity camera){
         prepare();
 
         skyboxRenderer.renderSkybox(camera);
@@ -79,6 +86,12 @@ public class MasterRenderer {
         cuboidShader.loadViewMatrix(camera);
         renderCuboidEntities(cuboidEntities, cuboidShader);
         cuboidShader.stop();
+
+        planeShader.start();
+        planeShader.loadLight(light);
+        planeShader.loadViewMatrix(camera);
+        renderPlaneEntities(planeEntities, planeShader);
+        planeShader.stop();
 
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glDisable(GL11.GL_POLYGON_MODE);
@@ -111,6 +124,15 @@ public class MasterRenderer {
                 GL11.glDrawElements(GL11.GL_TRIANGLES, rawModel.getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
             }
 
+            unbindRawModel();
+        }
+    }
+
+    private void renderPlaneEntities(List<PlaneEntity> planeEntities, AbstractShader shader){
+        for(PlaneEntity planeEntity : planeEntities){
+            prepareRawModel(planeEntity.getRawModel());
+            prepareEntity(planeEntity, shader);
+            GL11.glDrawElements(GL11.GL_TRIANGLES, planeEntity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
             unbindRawModel();
         }
     }
@@ -154,6 +176,8 @@ public class MasterRenderer {
             ((MainShader) shader).loadTransformationMatrix(transformationMatrix);
         }else if(shader instanceof CuboidShader){
             ((CuboidShader) shader).loadTransformationMatrix(transformationMatrix);
+        }else if(shader instanceof PlaneShader){
+            ((PlaneShader) shader).loadTransformationMatrix(transformationMatrix);
         }
     }
 
