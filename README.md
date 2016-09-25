@@ -1,6 +1,6 @@
 # Marching Cubes
 A 3D Voxel Rendering engine using the marching cubes algorithm.
-* VBO, VAO, FBO implementations
+* VBO/VAO, FBO implementations
 * Simple face normal lighting + normal mapping
 * Skybox
 * Free roam camera (Mouse, WASD, LShift, Space)
