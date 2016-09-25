@@ -21,12 +21,6 @@ import java.util.Map;
  */
 public class MasterRenderer {
 
-    private static final String texture0 = "/textures/texture0.png";
-    private static final String texture1 = "/textures/texture1.png";
-
-    private static final String normal0 = "/textures/normal0.png";
-    private static final String normal1 = "/textures/normal1.png";
-
     // private static final Vector3f clearColor = new Vector3f(0.82f, 0.93f, 0.94f);
     private static final Vector3f clearColor = new Vector3f(0.05f, 0.05f, 0.05f);
 
@@ -35,12 +29,7 @@ public class MasterRenderer {
     private PlaneShader planeShader;
 
     private SkyboxRenderer skyboxRenderer;
-
-    private int texture0Id;
-    private int texture1Id;
-
-    private int normal0Id;
-    private int normal1Id;
+    private AsteroidRenderer asteroidRenderer;
 
     public MasterRenderer(Loader loader){
         GL11.glEnable(GL11.GL_CULL_FACE);
@@ -49,17 +38,12 @@ public class MasterRenderer {
         Matrix4f projectionMatrix = ProjectionMatrix.create();
 
         skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
+        asteroidRenderer = new AsteroidRenderer(loader, projectionMatrix);
 
-        texture0Id = loader.loadTexture(texture0);
-        texture1Id = loader.loadTexture(texture1);
-
-        normal0Id = loader.loadTexture(normal0);
-        normal1Id = loader.loadTexture(normal1);
-
-        mainShader = new MainShader();
-        mainShader.start();
-        mainShader.loadProjectionMatrix(projectionMatrix);
-        mainShader.stop();
+//        mainShader = new MainShader();
+//        mainShader.start();
+//        mainShader.loadProjectionMatrix(projectionMatrix);
+//        mainShader.stop();
 
         cuboidShader = new CuboidShader();
         cuboidShader.start();
@@ -72,7 +56,7 @@ public class MasterRenderer {
         planeShader.stop();
     }
 
-    public void renderScene(Map<RawModel, List<ModelEntity>> entities, List<AsteroidEntity> asteroidEntities, List<CuboidEntity> cuboidEntities, List<PlaneEntity> planeEntities, LightEntity light, CameraEntity camera){
+    public void renderScene(Map<RawModel, List<ModelEntity>> entities, /*List<AsteroidEntity> asteroidEntities,*/ List<CuboidEntity> cuboidEntities, List<PlaneEntity> planeEntities, LightEntity light, CameraEntity camera){
         prepare();
 
         skyboxRenderer.renderSkybox(camera);
@@ -97,22 +81,24 @@ public class MasterRenderer {
         GL11.glDisable(GL11.GL_POLYGON_MODE);
         GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
 
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture0Id);
-        GL13.glActiveTexture(GL13.GL_TEXTURE1);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture1Id);
-        GL13.glActiveTexture(GL13.GL_TEXTURE2);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, normal0Id);
-        GL13.glActiveTexture(GL13.GL_TEXTURE3);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, normal1Id);
+        //asteroidRenderer.renderAsteroids(asteroidEntities, light, camera);
 
-        mainShader.start();
-        mainShader.connectTextureUnits();
-        mainShader.loadLight(light);
-        mainShader.loadViewMatrix(camera);
-        renderEntities(entities, mainShader);
-        renderAsteroidEntities(asteroidEntities, mainShader);
-        mainShader.stop();
+//        GL13.glActiveTexture(GL13.GL_TEXTURE0);
+//        GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture0Id);
+//        GL13.glActiveTexture(GL13.GL_TEXTURE1);
+//        GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture1Id);
+//        GL13.glActiveTexture(GL13.GL_TEXTURE2);
+//        GL11.glBindTexture(GL11.GL_TEXTURE_2D, normal0Id);
+//        GL13.glActiveTexture(GL13.GL_TEXTURE3);
+//        GL11.glBindTexture(GL11.GL_TEXTURE_2D, normal1Id);
+//
+//        mainShader.start();
+//        mainShader.connectTextureUnits();
+//        mainShader.loadLight(light);
+//        mainShader.loadViewMatrix(camera);
+//        renderEntities(entities, mainShader);
+//        renderAsteroidEntities(asteroidEntities, mainShader);
+//        mainShader.stop();
     }
 
     private void renderEntities(Map<RawModel, List<ModelEntity>> entities, AbstractShader shader){
@@ -146,15 +132,6 @@ public class MasterRenderer {
         }
     }
 
-    private void renderAsteroidEntities(List<AsteroidEntity> asteroidEntities, AbstractShader shader){
-       for(AsteroidEntity asteroidEntity : asteroidEntities){
-            prepareRawModel(asteroidEntity.getRawModel());
-            prepareEntity(asteroidEntity, shader);
-            GL11.glDrawElements(GL11.GL_TRIANGLES, asteroidEntity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
-            unbindRawModel();
-        }
-    }
-
     private void prepareRawModel(RawModel rawModel) {
         GL30.glBindVertexArray(rawModel.getVaoID());
         GL20.glEnableVertexAttribArray(0);
@@ -182,15 +159,16 @@ public class MasterRenderer {
     }
 
     public void cleanUp(){
-        mainShader.cleanUp();
+        //mainShader.cleanUp();
         cuboidShader.cleanUp();
         skyboxRenderer.cleanUp();
+        asteroidRenderer.cleanUp();
     }
 
     public void prepare() {
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        GL11.glClearColor(clearColor.x, clearColor.y, clearColor.z, 1);
+        GL11.glClearColor(clearColor.x, clearColor.y, clearColor.z, 0);
     }
 }

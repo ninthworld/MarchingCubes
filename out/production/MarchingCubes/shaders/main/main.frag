@@ -46,10 +46,11 @@ void main(void){
     vec3 normalTanSpace = normalize(blendedNormal.rgb * 2.0 - 1.0) * mat3(1, 0, 0, 0, 0, 1, 0, -1, 0);
 
     // Lighting
-    float cosTheta = dot(normalize((normalTanSpace - vec3(0, 1, 0)) + fragNormal), lightPos);
+    //float cosTheta = dot(normalize((normalTanSpace - vec3(0, 1, 0)) + fragNormal), lightPos);
+    float cosTheta = dot(fragNormal, lightPos);
     float brightness = clamp(cosTheta, 0, 1);
 
-    vec3 diffuseColor = blendedColor.rgb;
+    vec3 diffuseColor = vec3(0.372549, 0.333795, 0.262745); //blendedColor.rgb;
     vec3 ambientColor = lightAmbient * diffuseColor;
 
     out_Color = vec4(ambientColor + diffuseColor * lightColor * brightness, 1.0);

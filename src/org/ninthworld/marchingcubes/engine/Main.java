@@ -6,6 +6,7 @@ import org.lwjgl.util.vector.Vector3f;
 import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.fbo.Fbo;
 import org.ninthworld.marchingcubes.fbo.PostProcessing;
+import org.ninthworld.marchingcubes.helper.ProjectionMatrix;
 import org.ninthworld.marchingcubes.helper.SimplexNoise;
 import org.ninthworld.marchingcubes.helper.VoxelData;
 import org.ninthworld.marchingcubes.models.Loader;
@@ -23,12 +24,17 @@ public class Main {
     private Loader loader;
 
     private MasterRenderer masterRenderer;
+    private AsteroidRenderer asteroidRenderer;
 
     private LightEntity light;
     private CameraEntity camera;
 
     private Fbo multisampleFbo;
-    private Fbo outputFbo;
+    private Fbo outputFbo1;
+    private Fbo outputFbo2;
+
+    private Fbo ppFbo1;
+    private Fbo ppFbo2;
 
     private Map<RawModel, List<ModelEntity>> modelEntities;
     private List<AsteroidEntity> asteroidEntities;
@@ -53,9 +59,13 @@ public class Main {
         planeEntities = new ArrayList<>();
 
         masterRenderer = new MasterRenderer(loader);
+        asteroidRenderer = new AsteroidRenderer(loader, ProjectionMatrix.create());
 
         multisampleFbo = new Fbo(Display.getWidth(), Display.getHeight());
-        outputFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        outputFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        outputFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        ppFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        ppFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
 
         setup();
     }
@@ -77,9 +87,9 @@ public class Main {
 //        cuboidEntities.add(cuboidEntity1);
 
         PlaneEntity planeEntity = new PlaneEntity(loader, new Vector3f(0, 0, 0), new Vector3f(1, 0, 1));
-        float scale = 16;
-        for(int i=-4; i<4; i++){
-            for(int j=-4; j<4; j++){
+        float scale = 64;
+        for(int i=-8; i<8; i++){
+            for(int j=-8; j<8; j++){
                 PlaneEntity grid = new PlaneEntity(planeEntity.getRawModel(), new Vector3f(i, 0, j));
                 grid.setScale(scale);
                 planeEntities.add(grid);
@@ -103,11 +113,22 @@ public class Main {
             }
 
             multisampleFbo.bindFrameBuffer();
-            masterRenderer.renderScene(modelEntities, asteroidEntities, cuboidEntities, planeEntities, light, camera);
+            masterRenderer.renderScene(modelEntities, cuboidEntities, planeEntities, light, camera);
             multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.resolveToFbo(outputFbo1);
 
-            multisampleFbo.resolveToFbo(outputFbo);
-            PostProcessing.doPostProcessing(outputFbo.getColorTexture());
+            multisampleFbo.bindFrameBuffer();
+            asteroidRenderer.renderAsteroids(asteroidEntities, light, camera);
+            multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.resolveToFbo(outputFbo2);
+
+            ppFbo1.bindFrameBuffer();
+            PostProcessing.doPostProcessingSimpleAdd(outputFbo1.getColorTexture(), outputFbo1.getDepthTexture(), outputFbo2.getColorTexture(), outputFbo2.getDepthTexture());
+            ppFbo1.unbindFrameBuffer();
+
+            //ppFbo2.bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(ppFbo1.getColorTexture(), outputFbo2.getDepthTexture());
+            //ppFbo2.unbindFrameBuffer();
 
             DisplayManager.updateDisplay();
         }
@@ -117,9 +138,13 @@ public class Main {
 
     private void cleanUp(){
         masterRenderer.cleanUp();
+        asteroidRenderer.cleanUp();
 
         multisampleFbo.cleanUp();
-        outputFbo.cleanUp();
+        outputFbo1.cleanUp();
+        outputFbo2.cleanUp();
+        ppFbo1.cleanUp();
+        ppFbo2.cleanUp();
 
         loader.cleanUp();
 
