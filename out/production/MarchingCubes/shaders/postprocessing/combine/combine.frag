@@ -19,7 +19,7 @@ void main(void){
     int textureIndex = 0;
     float depthVal = 1.0;
     for(int i=0; i<numTextures; i++){
-        float depth = linearizedDepth(depthTextures[i], textureCoords);
+        float depth = texture(depthTextures[i], textureCoords).x; //linearizedDepth(depthTextures[i], textureCoords);
         if(depth < depthVal){
             depthVal = depth;
             textureIndex = i;

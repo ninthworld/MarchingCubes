@@ -20,6 +20,7 @@ public class PostProcessing {
     private static OutlineFXRenderer outlineFXRenderer;
 	private static SSAOFXRenderer ssaoFXRenderer;
 	private static CombineFXRenderer combineFXRenderer;
+	private static LinearizeDepthFXRenderer linearizeDepthFXRenderer;
 
 	public static void init(Loader loader){
 		quad = loader.loadToVao(POSITIONS, 2);
@@ -27,6 +28,13 @@ public class PostProcessing {
         outlineFXRenderer = new OutlineFXRenderer();
 		ssaoFXRenderer = new SSAOFXRenderer(ProjectionMatrix.create());
 		combineFXRenderer = new CombineFXRenderer();
+		linearizeDepthFXRenderer = new LinearizeDepthFXRenderer();
+	}
+
+	public static void doPostProcessingLinearizeDepth(int depthTexture){
+		start();
+		linearizeDepthFXRenderer.render(depthTexture);
+		end();
 	}
 
 	public static void doPostProcessingCombine(int ... texture){

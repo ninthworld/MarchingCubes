@@ -1,5 +1,6 @@
 package org.ninthworld.marchingcubes.engine;
 
+import javafx.geometry.Pos;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Matrix4f;
@@ -45,6 +46,8 @@ public class Main {
     private Fbo simpleFXFbo1;
     private Fbo simpleFXFbo2;
     private Fbo simpleFXFbo3;
+    private Fbo simpleFXFbo4;
+    private Fbo simpleFXFbo5;
 
     private Map<RawModel, List<ModelEntity>> modelEntities;
     private List<AsteroidEntity> asteroidEntities;
@@ -84,6 +87,8 @@ public class Main {
         simpleFXFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         simpleFXFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         simpleFXFbo3 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        simpleFXFbo4 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        simpleFXFbo5 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
 
         setup();
     }
@@ -176,7 +181,28 @@ public class Main {
             // * MasterFBO grid lines are thinner due to depth buffer. Looks better with alpha add.
             // * Outlines on asteroids are cut off due to asteroid depth buffer
 
-            PostProcessing.doPostProcessingCombine(skyboxFbo.getColorTexture(), skyboxFbo.getDepthTexture(), masterFbo.getColorTexture(), masterFbo.getDepthTexture(), outlineFXFbo.getColorTexture(), asteroidFbo.getDepthTexture());
+            simpleFXFbo1.bindFrameBuffer();
+            PostProcessing.doPostProcessingLinearizeDepth(skyboxFbo.getDepthTexture());
+            simpleFXFbo1.unbindFrameBuffer();
+
+            simpleFXFbo2.bindFrameBuffer();
+            PostProcessing.doPostProcessingLinearizeDepth(masterFbo.getDepthTexture());
+            simpleFXFbo2.unbindFrameBuffer();
+
+            simpleFXFbo5.bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(simpleFXFbo2.getColorTexture(), simpleFXFbo2.getColorTexture(), new Vector4f(0, 0, 0, 1), 1, 0.0015f);
+            simpleFXFbo5.unbindFrameBuffer();
+
+            simpleFXFbo3.bindFrameBuffer();
+            PostProcessing.doPostProcessingLinearizeDepth(asteroidFbo.getDepthTexture());
+            simpleFXFbo3.unbindFrameBuffer();
+
+            simpleFXFbo4.bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(simpleFXFbo3.getColorTexture(), simpleFXFbo3.getColorTexture(), new Vector4f(0, 0, 0, 1), 2, 0.0015f);
+            simpleFXFbo4.unbindFrameBuffer();
+
+            // Combines colorTextures and linearDepthTextures
+            PostProcessing.doPostProcessingCombine(skyboxFbo.getColorTexture(), simpleFXFbo1.getColorTexture(), masterFbo.getColorTexture(), simpleFXFbo5.getColorTexture(), outlineFXFbo.getColorTexture(), simpleFXFbo4.getColorTexture());
 
             DisplayManager.updateDisplay();
         }
@@ -200,6 +226,8 @@ public class Main {
         simpleFXFbo1.cleanUp();
         simpleFXFbo2.cleanUp();
         simpleFXFbo3.cleanUp();
+        simpleFXFbo4.cleanUp();
+        simpleFXFbo5.cleanUp();
 
         loader.cleanUp();
 
