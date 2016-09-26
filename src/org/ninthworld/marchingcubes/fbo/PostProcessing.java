@@ -19,14 +19,33 @@ public class PostProcessing {
 	private static SimpleFXRenderer simpleFXRenderer;
     private static OutlineFXRenderer outlineFXRenderer;
 	private static SSAOFXRenderer ssaoFXRenderer;
+	private static CombineFXRenderer combineFXRenderer;
 
 	public static void init(Loader loader){
 		quad = loader.loadToVao(POSITIONS, 2);
         simpleFXRenderer = new SimpleFXRenderer();
         outlineFXRenderer = new OutlineFXRenderer();
 		ssaoFXRenderer = new SSAOFXRenderer(ProjectionMatrix.create());
+		combineFXRenderer = new CombineFXRenderer();
 	}
-	
+
+	public static void doPostProcessingCombine(int ... texture){
+		int[] colorTextures = new int[texture.length/2];
+		int[] depthTextures = new int[texture.length/2];
+
+		for(int i=0; i<texture.length; i++){
+			if(i%2 == 0) {
+				colorTextures[(int) Math.floor(i/2)] = texture[i];
+			}else{
+				depthTextures[(int) Math.floor(i/2)] = texture[i];
+			}
+		}
+
+		start();
+		combineFXRenderer.render(colorTextures, depthTextures);
+		end();
+	}
+
 	public static void doPostProcessingSimpleAlpha(int colorTexture1, int colorTexture2) {
         start();
         simpleFXRenderer.renderAddAlpha(colorTexture1, colorTexture2);
@@ -38,6 +57,12 @@ public class PostProcessing {
         simpleFXRenderer.renderAddDepth(colorTexture1, depthTexture1, colorTexture2, depthTexture2);
         end();
     }
+
+    public static void doPostProcessingSimpleRenderDepth(int depthTexture1){
+		start();
+		simpleFXRenderer.renderDepthTexture(depthTexture1);
+		end();
+	}
 
     public static void doPostProcessingOutline(int colorTexture, int depthTexture, Vector4f borderColor, int borderSize, float borderThreshold) {
         start();

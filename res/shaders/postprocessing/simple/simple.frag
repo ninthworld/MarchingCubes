@@ -11,7 +11,8 @@ uniform sampler2D colorTexture2;
 uniform sampler2D depthTexture2;
 
 const int   EFFECT_ADD_ALPHA = 0,
-            EFFECT_ADD_DEPTH = 1;
+            EFFECT_ADD_DEPTH = 1,
+            EFFECT_RENDER_DEPTH = 2;
 
 float linearizedDepth(sampler2D txture, vec2 coords){
     float n = 0.1; // Camera Z-Near
@@ -30,7 +31,9 @@ void main(void){
             }else{
                 out_Color = texture(colorTexture2, textureCoords).rgba;
             }
-            // out_Color = vec4(mix(texture(colorTexture1, textureCoords).rgb, texture(colorTexture2, textureCoords).rgb, texture(colorTexture2, textureCoords).a), );
+            break;
+        case EFFECT_RENDER_DEPTH:
+            out_Color = vec4(vec3(linearizedDepth(depthTexture1, textureCoords)), 1.0);
             break;
         default:
             out_Color = mix(texture(colorTexture1, textureCoords).rgba, texture(colorTexture2, textureCoords).rgba, 0.5);//texture(colorTexture1, textureCoords).a);

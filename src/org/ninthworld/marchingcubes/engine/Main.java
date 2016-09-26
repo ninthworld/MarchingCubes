@@ -41,6 +41,7 @@ public class Main {
     private Fbo asteroidFbo;
 
     private Fbo ssaoFXFbo;
+    private Fbo outlineFXFbo;
     private Fbo simpleFXFbo1;
     private Fbo simpleFXFbo2;
     private Fbo simpleFXFbo3;
@@ -79,6 +80,7 @@ public class Main {
         asteroidFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         normalFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         ssaoFXFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        outlineFXFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         simpleFXFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         simpleFXFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         simpleFXFbo3 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
@@ -115,9 +117,21 @@ public class Main {
         loop();
     }
 
+    long time = 0;
+    int frames = 0;
+
     float angle = 0;
     private void loop(){
+        time = System.nanoTime();
         while(!Display.isCloseRequested()){
+            if(System.nanoTime() - time < 1000000000L){
+                frames++;
+            }else{
+                Display.setTitle("Marching Cubes - FPS: " + frames);
+                time = System.nanoTime();
+                frames = 0;
+            }
+
             camera.move();
             light.setPosition(new Vector3f((float) Math.cos(angle)*10f, 5f, (float) Math.sin(angle)*10f));
 
@@ -154,25 +168,15 @@ public class Main {
             PostProcessing.doPostProcessingSSAO(asteroidFbo.getColorTexture(), asteroidFbo.getDepthTexture(), normalFbo.getColorTexture(), 15, 0.006f, 4.0f);
             ssaoFXFbo.unbindFrameBuffer();
 
-            simpleFXFbo1.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(masterFbo.getColorTexture(), masterFbo.getDepthTexture(), new Vector4f(0.1f, 0.6f, 0.8f, 0.4f), 2, 0.003f);
-            simpleFXFbo1.unbindFrameBuffer();
+            outlineFXFbo.bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(ssaoFXFbo.getColorTexture(), asteroidFbo.getDepthTexture(), new Vector4f(0.8f, 0.4f, 0.1f, 0.4f), 2, 0.0015f);
+            outlineFXFbo.unbindFrameBuffer();
 
-            simpleFXFbo2.bindFrameBuffer();
-            PostProcessing.doPostProcessingSimpleAlpha(simpleFXFbo1.getColorTexture(), skyboxFbo.getColorTexture());
-            simpleFXFbo2.unbindFrameBuffer();
+            // Fix:
+            // * MasterFBO grid lines are thinner due to depth buffer. Looks better with alpha add.
+            // * Outlines on asteroids are cut off due to asteroid depth buffer
 
-            simpleFXFbo3.bindFrameBuffer();
-            PostProcessing.doPostProcessingSimpleAdd(ssaoFXFbo.getColorTexture(), asteroidFbo.getDepthTexture(), simpleFXFbo2.getColorTexture(), skyboxFbo.getDepthTexture());
-            simpleFXFbo3.unbindFrameBuffer();
-
-//            ppFbo1.bindFrameBuffer();
-//            PostProcessing.doPostProcessingSimpleAdd(outputFbo1.getColorTexture(), outputFbo1.getDepthTexture(), outputFbo2.getColorTexture(), outputFbo2.getDepthTexture());
-//            ppFbo1.unbindFrameBuffer();
-
-            //ppFbo2.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(simpleFXFbo3.getColorTexture(), asteroidFbo.getDepthTexture(), new Vector4f(0.8f, 0.4f, 0.1f, 0.4f), 2, 0.0015f);
-            //ppFbo2.unbindFrameBuffer();
+            PostProcessing.doPostProcessingCombine(skyboxFbo.getColorTexture(), skyboxFbo.getDepthTexture(), masterFbo.getColorTexture(), masterFbo.getDepthTexture(), outlineFXFbo.getColorTexture(), asteroidFbo.getDepthTexture());
 
             DisplayManager.updateDisplay();
         }
@@ -192,6 +196,7 @@ public class Main {
         asteroidFbo.cleanUp();
         normalFbo.cleanUp();
         ssaoFXFbo.cleanUp();
+        outlineFXFbo.cleanUp();
         simpleFXFbo1.cleanUp();
         simpleFXFbo2.cleanUp();
         simpleFXFbo3.cleanUp();
