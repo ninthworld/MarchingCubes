@@ -8,7 +8,7 @@ uniform vec2 screenSize;
 uniform sampler2D colorTexture;
 uniform sampler2D depthTexture;
 
-vec4 borderColor = vec4(0.5, 0.4, 0.8, 0.6);
+vec4 borderColor = vec4(0.1, 0.6, 0.8, 0.4);
 int borderSize = 2;
 float threshold = 0.0015;
 
@@ -34,7 +34,7 @@ void main(void){
         borderDiffuse = borderColor;
     }
 
-    vec3 colorDiffuse = texture(colorTexture, textureCoords).rgb;
+    vec4 colorDiffuse = texture(colorTexture, textureCoords).rgba;
 
-    out_Color = vec4(mix(colorDiffuse, borderDiffuse.rgb, borderDiffuse.a), 1);
+    out_Color = mix(colorDiffuse, borderDiffuse.rgba, borderDiffuse.a);
 }

@@ -2,26 +2,21 @@ package org.ninthworld.marchingcubes.shaders;
 
 import org.lwjgl.util.vector.Matrix4f;
 import org.ninthworld.marchingcubes.entities.CameraEntity;
-import org.ninthworld.marchingcubes.entities.LightEntity;
 import org.ninthworld.marchingcubes.helper.MatrixHelper;
 
 /**
- * Created by NinthWorld on 9/22/2016.
+ * Created by NinthWorld on 9/25/2016.
  */
-public class PlaneShader extends AbstractShader {
+public class NormalShader extends AbstractShader {
 
-    private static final String VERTEX_FILE = "/shaders/geometry/plane/plane.vert";
-    private static final String FRAGMENT_FILE = "/shaders/geometry/plane/plane.frag";
+    private static final String VERTEX_FILE = "/shaders/geometry/normal/normal.vert";
+    private static final String FRAGMENT_FILE = "/shaders/geometry/normal/normal.frag";
 
     private int location_transformationMatrix;
     private int location_projectionMatrix;
     private int location_viewMatrix;
 
-    private int location_lightPosition;
-    private int location_lightColor;
-    private int location_lightAmbient;
-
-    public PlaneShader(){
+    public NormalShader(){
         super(VERTEX_FILE, FRAGMENT_FILE);
     }
 
@@ -37,19 +32,6 @@ public class PlaneShader extends AbstractShader {
         location_transformationMatrix = super.getUniformLocation("transformationMatrix");
         location_projectionMatrix = super.getUniformLocation("projectionMatrix");
         location_viewMatrix = super.getUniformLocation("viewMatrix");
-
-        location_lightPosition = super.getUniformLocation("lightPosition");
-        location_lightColor = super.getUniformLocation("lightColor");
-        location_lightAmbient = super.getUniformLocation("lightAmbient");
-    }
-
-    public void connectTextureUnits(){
-    }
-
-    public void loadLight(LightEntity light){
-        super.loadVector3f(location_lightPosition, light.getPosition());
-        super.loadVector3f(location_lightColor, light.getColor());
-        super.loadVector3f(location_lightAmbient, light.getAmbient());
     }
 
     public void loadTransformationMatrix(Matrix4f matrix){

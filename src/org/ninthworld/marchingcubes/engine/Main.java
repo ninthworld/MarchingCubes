@@ -2,6 +2,7 @@ package org.ninthworld.marchingcubes.engine;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.fbo.Fbo;
@@ -12,6 +13,7 @@ import org.ninthworld.marchingcubes.helper.VoxelData;
 import org.ninthworld.marchingcubes.models.Loader;
 import org.ninthworld.marchingcubes.models.RawModel;
 import org.ninthworld.marchingcubes.renderers.*;
+import org.ninthworld.marchingcubes.renderers.geometry.NormalRenderer;
 
 import java.io.File;
 import java.util.*;
@@ -24,17 +26,23 @@ public class Main {
     private Loader loader;
 
     private MasterRenderer masterRenderer;
+    private SkyboxRenderer skyboxRenderer;
     private AsteroidRenderer asteroidRenderer;
+    private NormalRenderer normalRenderer;
 
     private LightEntity light;
     private CameraEntity camera;
 
     private Fbo multisampleFbo;
-    private Fbo outputFbo1;
-    private Fbo outputFbo2;
+    private Fbo masterFbo;
+    private Fbo skyboxFbo;
+    private Fbo normalFbo;
+    private Fbo asteroidFbo;
 
-    private Fbo ppFbo1;
-    private Fbo ppFbo2;
+    private Fbo ssaoFXFbo;
+    private Fbo simpleFXFbo1;
+    private Fbo simpleFXFbo2;
+    private Fbo simpleFXFbo3;
 
     private Map<RawModel, List<ModelEntity>> modelEntities;
     private List<AsteroidEntity> asteroidEntities;
@@ -58,14 +66,21 @@ public class Main {
         cuboidEntities = new ArrayList<>();
         planeEntities = new ArrayList<>();
 
+        Matrix4f projectionMatrix = ProjectionMatrix.create();
         masterRenderer = new MasterRenderer(loader);
-        asteroidRenderer = new AsteroidRenderer(loader, ProjectionMatrix.create());
+        skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
+        asteroidRenderer = new AsteroidRenderer(loader, projectionMatrix);
+        normalRenderer = new NormalRenderer(loader, projectionMatrix);
 
         multisampleFbo = new Fbo(Display.getWidth(), Display.getHeight());
-        outputFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        outputFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        ppFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        ppFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        masterFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        skyboxFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        asteroidFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        normalFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        ssaoFXFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        simpleFXFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        simpleFXFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        simpleFXFbo3 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
 
         setup();
     }
@@ -115,19 +130,47 @@ public class Main {
             multisampleFbo.bindFrameBuffer();
             masterRenderer.renderScene(modelEntities, cuboidEntities, planeEntities, light, camera);
             multisampleFbo.unbindFrameBuffer();
-            multisampleFbo.resolveToFbo(outputFbo1);
+            multisampleFbo.resolveToFbo(masterFbo);
+
+            multisampleFbo.bindFrameBuffer();
+            skyboxRenderer.renderSkybox(camera);
+            multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.resolveToFbo(skyboxFbo);
 
             multisampleFbo.bindFrameBuffer();
             asteroidRenderer.renderAsteroids(asteroidEntities, light, camera);
             multisampleFbo.unbindFrameBuffer();
-            multisampleFbo.resolveToFbo(outputFbo2);
+            multisampleFbo.resolveToFbo(asteroidFbo);
 
-            ppFbo1.bindFrameBuffer();
-            PostProcessing.doPostProcessingSimpleAdd(outputFbo1.getColorTexture(), outputFbo1.getDepthTexture(), outputFbo2.getColorTexture(), outputFbo2.getDepthTexture());
-            ppFbo1.unbindFrameBuffer();
+            List<ModelEntity> models = new ArrayList<>();
+            models.addAll(asteroidEntities);
+
+            normalFbo.bindFrameBuffer();
+            normalRenderer.render(models, camera);
+            normalFbo.unbindFrameBuffer();
+
+            ssaoFXFbo.bindFrameBuffer();
+            PostProcessing.doPostProcessingSSAO(asteroidFbo.getColorTexture(), asteroidFbo.getDepthTexture(), normalFbo.getColorTexture());
+            ssaoFXFbo.unbindFrameBuffer();
+
+            simpleFXFbo1.bindFrameBuffer();
+            PostProcessing.doPostProcessingOutline(masterFbo.getColorTexture(), masterFbo.getDepthTexture());
+            simpleFXFbo1.unbindFrameBuffer();
+
+            simpleFXFbo2.bindFrameBuffer();
+            PostProcessing.doPostProcessingSimpleAlpha(simpleFXFbo1.getColorTexture(), skyboxFbo.getColorTexture());
+            simpleFXFbo2.unbindFrameBuffer();
+
+            simpleFXFbo3.bindFrameBuffer();
+            PostProcessing.doPostProcessingSimpleAdd(ssaoFXFbo.getColorTexture(), asteroidFbo.getDepthTexture(), simpleFXFbo2.getColorTexture(), skyboxFbo.getDepthTexture());
+            simpleFXFbo3.unbindFrameBuffer();
+
+//            ppFbo1.bindFrameBuffer();
+//            PostProcessing.doPostProcessingSimpleAdd(outputFbo1.getColorTexture(), outputFbo1.getDepthTexture(), outputFbo2.getColorTexture(), outputFbo2.getDepthTexture());
+//            ppFbo1.unbindFrameBuffer();
 
             //ppFbo2.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(ppFbo1.getColorTexture(), outputFbo2.getDepthTexture());
+            PostProcessing.doPostProcessingOutline(simpleFXFbo3.getColorTexture(), asteroidFbo.getDepthTexture());
             //ppFbo2.unbindFrameBuffer();
 
             DisplayManager.updateDisplay();
@@ -138,13 +181,19 @@ public class Main {
 
     private void cleanUp(){
         masterRenderer.cleanUp();
+        skyboxRenderer.cleanUp();
         asteroidRenderer.cleanUp();
+        normalRenderer.cleanUp();
 
         multisampleFbo.cleanUp();
-        outputFbo1.cleanUp();
-        outputFbo2.cleanUp();
-        ppFbo1.cleanUp();
-        ppFbo2.cleanUp();
+        masterFbo.cleanUp();
+        skyboxFbo.cleanUp();
+        asteroidFbo.cleanUp();
+        normalFbo.cleanUp();
+        ssaoFXFbo.cleanUp();
+        simpleFXFbo1.cleanUp();
+        simpleFXFbo2.cleanUp();
+        simpleFXFbo3.cleanUp();
 
         loader.cleanUp();
 

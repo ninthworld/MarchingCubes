@@ -28,7 +28,7 @@ void main(void){
 
     // Multi-texture Coords
     float matIndex = fragMaterial - 1.0;
-    float scale = 0.08;
+    float scale = 0.2; //0.08;
     vec2 xAxis = fragPosition.yz * scale;
     vec2 yAxis = fragPosition.xz * scale;
     vec2 zAxis = fragPosition.xy * scale;
@@ -50,7 +50,7 @@ void main(void){
     float cosTheta = dot(fragNormal, lightPos);
     float brightness = clamp(cosTheta, 0, 1);
 
-    vec3 diffuseColor = vec3(0.372549, 0.333795, 0.262745); //blendedColor.rgb;
+    vec3 diffuseColor = vec3(0.4, 0.3, 0.3); //blendedColor.rgb;
     vec3 ambientColor = lightAmbient * diffuseColor;
 
     out_Color = vec4(ambientColor + diffuseColor * lightColor * brightness, 1.0);

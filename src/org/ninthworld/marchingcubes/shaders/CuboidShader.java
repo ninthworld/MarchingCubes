@@ -10,8 +10,8 @@ import org.ninthworld.marchingcubes.helper.MatrixHelper;
  */
 public class CuboidShader extends AbstractShader {
 
-    private static final String VERTEX_FILE = "/shaders/geometry/cuboid.vert";
-    private static final String FRAGMENT_FILE = "/shaders/geometry/cuboid.frag";
+    private static final String VERTEX_FILE = "/shaders/geometry/cuboid/cuboid.vert";
+    private static final String FRAGMENT_FILE = "/shaders/geometry/cuboid/cuboid.frag";
 
     private int location_transformationMatrix;
     private int location_projectionMatrix;

@@ -76,6 +76,8 @@ public class SkyboxRenderer {
     }
 
     public void renderSkybox(CameraEntity camera){
+        prepare();
+
         skyboxShader.start();
         skyboxShader.loadViewMatrix(camera);
         GL30.glBindVertexArray(cube.getVaoID());
@@ -90,5 +92,12 @@ public class SkyboxRenderer {
 
     public void cleanUp(){
         skyboxShader.cleanUp();
+    }
+
+    public void prepare() {
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        GL11.glClearColor(0, 0, 0, 0);
     }
 }

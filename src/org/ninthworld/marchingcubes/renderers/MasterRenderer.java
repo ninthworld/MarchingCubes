@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by NinthWorld on 6/6/2016.
+ * Created by NinthWorld on 9/25/2016.
  */
 public class MasterRenderer {
 
@@ -59,10 +59,11 @@ public class MasterRenderer {
     public void renderScene(Map<RawModel, List<ModelEntity>> entities, /*List<AsteroidEntity> asteroidEntities,*/ List<CuboidEntity> cuboidEntities, List<PlaneEntity> planeEntities, LightEntity light, CameraEntity camera){
         prepare();
 
-        skyboxRenderer.renderSkybox(camera);
+        // skyboxRenderer.renderSkybox(camera);
 
-        GL11.glEnable(GL11.GL_POLYGON_MODE);
-        GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
+        //GL11.glEnable(GL11.GL_POLYGON_MODE);
+        //GL11.glLineWidth(4f);
+        //GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_LINE);
         GL11.glDisable(GL11.GL_CULL_FACE);
 
         cuboidShader.start();
@@ -78,8 +79,8 @@ public class MasterRenderer {
         planeShader.stop();
 
         GL11.glEnable(GL11.GL_CULL_FACE);
-        GL11.glDisable(GL11.GL_POLYGON_MODE);
-        GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
+        //GL11.glDisable(GL11.GL_POLYGON_MODE);
+        //GL11.glPolygonMode(GL11.GL_FRONT_AND_BACK, GL11.GL_FILL);
 
         //asteroidRenderer.renderAsteroids(asteroidEntities, light, camera);
 
@@ -118,7 +119,7 @@ public class MasterRenderer {
         for(PlaneEntity planeEntity : planeEntities){
             prepareRawModel(planeEntity.getRawModel());
             prepareEntity(planeEntity, shader);
-            GL11.glDrawElements(GL11.GL_TRIANGLES, planeEntity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
+            GL11.glDrawElements(GL11.GL_LINES, planeEntity.getRawModel().getVertexCount(), GL11.GL_UNSIGNED_INT, 0);
             unbindRawModel();
         }
     }

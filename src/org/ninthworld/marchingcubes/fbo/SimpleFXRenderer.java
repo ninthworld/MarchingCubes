@@ -17,9 +17,11 @@ public class SimpleFXRenderer {
         renderer = new ImageRenderer();
     }
 
-    public void renderNone(int colorTexture1){
+    public void renderAddAlpha(int colorTexture1, int colorTexture2){
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, colorTexture1);
+        GL13.glActiveTexture(GL13.GL_TEXTURE2);
+        GL11.glBindTexture(GL11.GL_TEXTURE_2D, colorTexture2);
 
         simpleFXShader.start();
         simpleFXShader.loadEffect(0);
@@ -28,7 +30,7 @@ public class SimpleFXRenderer {
         simpleFXShader.stop();
     }
 
-    public void renderAdd(int colorTexture1, int depthTexture1, int colorTexture2, int depthTexture2){
+    public void renderAddDepth(int colorTexture1, int depthTexture1, int colorTexture2, int depthTexture2){
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, colorTexture1);
         GL13.glActiveTexture(GL13.GL_TEXTURE1);
