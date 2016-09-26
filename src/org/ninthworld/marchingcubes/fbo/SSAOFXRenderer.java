@@ -57,7 +57,7 @@ public class SSAOFXRenderer {
         ssaoFXShader.stop();
     }
 
-    public void render(int colorTexture, int depthTexture, int normalTexture){
+    public void render(int colorTexture, int depthTexture, int normalTexture, int numSamples, float kRadius, float kDistanceThreshold){
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, colorTexture);
 
@@ -69,6 +69,9 @@ public class SSAOFXRenderer {
 
         ssaoFXShader.start();
         ssaoFXShader.connectTextureUnits();
+        ssaoFXShader.loadNumSamples(numSamples);
+        ssaoFXShader.loadKRadius(kRadius);
+        ssaoFXShader.loadKDistanceThreshold(kDistanceThreshold);
         renderer.renderQuad();
         ssaoFXShader.stop();
     }

@@ -36,7 +36,7 @@ void main(void){
     // Multi-texture Color
     vec4 color0 = texture(texture0, xAxis) * blending.x + texture(texture0, yAxis) * blending.y + texture(texture0, zAxis) * blending.z;
     vec4 color1 = texture(texture1, xAxis) * blending.x + texture(texture1, yAxis) * blending.y + texture(texture1, zAxis) * blending.z;
-    vec4 blendedColor = color0*matIndex + color1*(1.0 - matIndex);
+    vec4 blendedColor = color1*matIndex + color0*(1.0 - matIndex);
 
     // Multi-texture Normal
     vec4 norm0 = texture(normal0, xAxis) * blending.x + texture(normal0, yAxis) * blending.y + texture(normal0, zAxis) * blending.z;
@@ -46,11 +46,11 @@ void main(void){
     vec3 normalTanSpace = normalize(blendedNormal.rgb * 2.0 - 1.0) * mat3(1, 0, 0, 0, 0, 1, 0, -1, 0);
 
     // Lighting
-    //float cosTheta = dot(normalize((normalTanSpace - vec3(0, 1, 0)) + fragNormal), lightPos);
-    float cosTheta = dot(fragNormal, lightPos);
+    float cosTheta = dot(normalize((normalTanSpace - vec3(0, 1, 0)) + fragNormal), lightPos);
+    //float cosTheta = dot(fragNormal, lightPos);
     float brightness = clamp(cosTheta, 0, 1);
 
-    vec3 diffuseColor = vec3(0.4, 0.3, 0.3); //blendedColor.rgb;
+    vec3 diffuseColor = blendedColor.rgb; //vec3(0.4, 0.3, 0.3); //
     vec3 ambientColor = lightAmbient * diffuseColor;
 
     out_Color = vec4(ambientColor + diffuseColor * lightColor * brightness, 1.0);

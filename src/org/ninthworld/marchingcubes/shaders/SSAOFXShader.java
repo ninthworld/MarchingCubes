@@ -15,6 +15,10 @@ public class SSAOFXShader extends AbstractShader {
 	private int[] location_samples;
 	private int location_invProjectionMatrix;
 
+	private int location_numSamples;
+	private int location_kRadius;
+	private int location_kDistanceThreshold;
+
 	public SSAOFXShader() {
 		super(VERTEX_FILE, FRAGMENT_FILE);
 	}
@@ -30,7 +34,23 @@ public class SSAOFXShader extends AbstractShader {
 		for(int i=0; i<location_samples.length; i++) {
 			location_samples[i] = super.getUniformLocation("samples[" + i + "]");
 		}
+
+		location_numSamples = super.getUniformLocation("numSamples");
+		location_kRadius = super.getUniformLocation("kRadius");
+		location_kDistanceThreshold = super.getUniformLocation("kDistanceThreshold");
 	}
+
+	public void loadNumSamples(int numSamples){
+        super.loadInteger(location_numSamples, numSamples);
+    }
+
+    public void loadKRadius(float kRadius){
+        super.loadFloat(location_kRadius, kRadius);
+    }
+
+    public void loadKDistanceThreshold(float kDistanceThreshold){
+        super.loadFloat(location_kDistanceThreshold, kDistanceThreshold);
+    }
 
 	public void connectTextureUnits(){
 		super.loadInteger(location_colorTexture, 0);

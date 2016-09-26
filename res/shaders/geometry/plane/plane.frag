@@ -21,5 +21,5 @@ void main(void){
     vec3 diffuseColor = fragColor;
     vec3 ambientColor = lightAmbient * diffuseColor;
 
-    out_Color = vec4(50/255.0, 80/255.0, 100/255.0, 1); //vec4(ambientColor + diffuseColor * lightColor * brightness, 1.0);
+    out_Color = vec4(0.1, 0.6, 0.8, 0.4); //vec4(ambientColor + diffuseColor * lightColor * brightness, 1.0);
 }

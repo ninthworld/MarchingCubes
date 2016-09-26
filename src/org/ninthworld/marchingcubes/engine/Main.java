@@ -4,6 +4,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
+import org.lwjgl.util.vector.Vector4f;
 import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.fbo.Fbo;
 import org.ninthworld.marchingcubes.fbo.PostProcessing;
@@ -150,11 +151,11 @@ public class Main {
             normalFbo.unbindFrameBuffer();
 
             ssaoFXFbo.bindFrameBuffer();
-            PostProcessing.doPostProcessingSSAO(asteroidFbo.getColorTexture(), asteroidFbo.getDepthTexture(), normalFbo.getColorTexture());
+            PostProcessing.doPostProcessingSSAO(asteroidFbo.getColorTexture(), asteroidFbo.getDepthTexture(), normalFbo.getColorTexture(), 15, 0.006f, 4.0f);
             ssaoFXFbo.unbindFrameBuffer();
 
             simpleFXFbo1.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(masterFbo.getColorTexture(), masterFbo.getDepthTexture());
+            PostProcessing.doPostProcessingOutline(masterFbo.getColorTexture(), masterFbo.getDepthTexture(), new Vector4f(0.1f, 0.6f, 0.8f, 0.4f), 2, 0.003f);
             simpleFXFbo1.unbindFrameBuffer();
 
             simpleFXFbo2.bindFrameBuffer();
@@ -170,7 +171,7 @@ public class Main {
 //            ppFbo1.unbindFrameBuffer();
 
             //ppFbo2.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(simpleFXFbo3.getColorTexture(), asteroidFbo.getDepthTexture());
+            PostProcessing.doPostProcessingOutline(simpleFXFbo3.getColorTexture(), asteroidFbo.getDepthTexture(), new Vector4f(0.8f, 0.4f, 0.1f, 0.4f), 2, 0.0015f);
             //ppFbo2.unbindFrameBuffer();
 
             DisplayManager.updateDisplay();

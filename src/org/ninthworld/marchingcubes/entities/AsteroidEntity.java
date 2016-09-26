@@ -28,7 +28,7 @@ public class AsteroidEntity extends VoxelEntity {
                     float surfaceDist = radius + (float) simplexNoise.getNoise(x, y, z)*noiseAmp;
 
                     if(distToCenter < surfaceDist){
-                        this.getVoxelData().setVoxelDataAt(x, y, z, 2); //(distToCenter < (radius+noiseAmp)/3f ? 1 : (distToCenter >= (radius+noiseAmp)/3f && distToCenter < 2f*(radius+noiseAmp)/3f ? 2 : 2)));
+                        this.getVoxelData().setVoxelDataAt(x, y, z, (distToCenter > (radius + noiseAmp)/2f  ? 1 : 2)); //(distToCenter < (radius+noiseAmp)/3f ? 1 : (distToCenter >= (radius+noiseAmp)/3f && distToCenter < 2f*(radius+noiseAmp)/3f ? 2 : 2)));
                     }
                 }
             }

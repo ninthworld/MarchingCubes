@@ -12,16 +12,16 @@ uniform sampler2D normalTexture;
 uniform highp vec2 samples[16];
 uniform highp mat4 invProjectionMatrix;
 
+uniform int numSamples;
+uniform float kRadius;
+uniform float kDistanceThreshold;
+
 vec3 reconstructPosition(in highp vec2 coord, in highp float depth){
     highp vec4 vec = vec4(coord.x, coord.y, depth, 1.0);
     vec = vec * 2.0 - 1.0;
     highp vec4 r = invProjectionMatrix * vec;
     return r.xyz / r.w;
 }
-
-const highp int numSamples = 20;
-const highp float kRadius = 0.008;
-const highp float kDistanceThreshold = 4.0;
 
 void main(void){
 

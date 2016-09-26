@@ -23,10 +23,10 @@ public class AsteroidRenderer {
 
     private static final Vector3f clearColor = new Vector3f(0.05f, 0.05f, 0.05f);
 
-    private static final String texture0 = "/textures/texture0.png";
-    private static final String texture1 = "/textures/texture1.png";
+    private static final String texture0 = "/textures/texture1.png";
+    private static final String texture1 = "/textures/texture2.png";
 
-    private static final String normal0 = "/textures/normal0.png";
+    private static final String normal0 = "/textures/normal1.png";
     private static final String normal1 = "/textures/normal1.png";
 
     private AsteroidShader asteroidShader;

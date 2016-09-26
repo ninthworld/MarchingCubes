@@ -3,6 +3,7 @@ package org.ninthworld.marchingcubes.fbo;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
+import org.lwjgl.util.vector.Vector4f;
 import org.ninthworld.marchingcubes.helper.ProjectionMatrix;
 import org.ninthworld.marchingcubes.models.RawModel;
 import org.ninthworld.marchingcubes.models.Loader;
@@ -38,15 +39,15 @@ public class PostProcessing {
         end();
     }
 
-    public static void doPostProcessingOutline(int colorTexture, int depthTexture) {
+    public static void doPostProcessingOutline(int colorTexture, int depthTexture, Vector4f borderColor, int borderSize, float borderThreshold) {
         start();
-        outlineFXRenderer.render(colorTexture, depthTexture);
+        outlineFXRenderer.render(colorTexture, depthTexture, borderColor, borderSize, borderThreshold);
         end();
     }
 
-    public static void doPostProcessingSSAO(int colorTexture, int depthTexture, int normalTexture){
+    public static void doPostProcessingSSAO(int colorTexture, int depthTexture, int normalTexture, int numSamples, float kRadius, float kDistanceThreshold){
 		start();
-		ssaoFXRenderer.render(colorTexture, depthTexture, normalTexture);
+		ssaoFXRenderer.render(colorTexture, depthTexture, normalTexture, numSamples, kRadius, kDistanceThreshold);
 		end();
 	}
 	

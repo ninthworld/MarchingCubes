@@ -7,10 +7,9 @@ out vec4 out_Color;
 uniform vec2 screenSize;
 uniform sampler2D colorTexture;
 uniform sampler2D depthTexture;
-
-vec4 borderColor = vec4(0.1, 0.6, 0.8, 0.4);
-int borderSize = 2;
-float threshold = 0.0015;
+uniform vec4 borderColor;
+uniform int borderSize;
+uniform float borderThreshold;
 
 float linearizedDepth(sampler2D txture, vec2 coords){
     float n = 0.1; // Camera Z-Near
@@ -30,7 +29,7 @@ void main(void){
     }
     avg /= pow(r*2 + 1, 2);
     float c = linearizedDepth(depthTexture, textureCoords);
-    if(c - avg > threshold){
+    if(c - avg > borderThreshold){
         borderDiffuse = borderColor;
     }
 
