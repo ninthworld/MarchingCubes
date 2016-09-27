@@ -5,25 +5,26 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL13;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
+import org.ninthworld.marchingcubes.shaders.MainFXShader;
 import org.ninthworld.marchingcubes.shaders.SSAOFXShader;
 
 /**
- * Created by NinthWorld on 6/7/2016.
+ * Created by NinthWorld on 9/26/2016.
  */
-public class SSAOFXRenderer {
+public class MainFXRenderer {
     public static final float FOV = 70;
     public static final float NEAR_PLANE = 0.1f;
     public static final float FAR_PLANE = 1000;
     private Matrix4f projectionMatrix;
 
     private ImageRenderer renderer;
-    private SSAOFXShader ssaoFXShader;
+    private MainFXShader mainFXShader;
 
     private Vector2f[] samples;
     private Matrix4f invProjectionMatrix;
 
-    public SSAOFXRenderer(Matrix4f projectionMatrix) {
-        ssaoFXShader = new SSAOFXShader();
+    public MainFXRenderer(Matrix4f projectionMatrix) {
+        mainFXShader = new MainFXShader();
         renderer = new ImageRenderer();
         invProjectionMatrix = Matrix4f.invert(projectionMatrix, invProjectionMatrix);
 
@@ -51,33 +52,27 @@ public class SSAOFXRenderer {
             samples[i] = new Vector2f(sampleValues[i*2], sampleValues[i*2+1]);
         }
 
-        ssaoFXShader.start();
-        ssaoFXShader.loadSamples(samples);
-        ssaoFXShader.loadInvProjectionMatrix(invProjectionMatrix);
-        ssaoFXShader.stop();
+        mainFXShader.start();
+        mainFXShader.loadSamples(samples);
+        mainFXShader.loadInvProjectionMatrix(invProjectionMatrix);
+        mainFXShader.loadScreenSize(new Vector2f(Display.getWidth(), Display.getHeight()));
+        mainFXShader.stop();
     }
 
-    public void render(int colorTexture, int depthTexture, int normalTexture, int numSamples, float kRadius, float kDistanceThreshold){
-        GL13.glActiveTexture(GL13.GL_TEXTURE0);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, colorTexture);
+    public void render(int ... texture){
+        for(int i=0; i<texture.length; i++) {
+            GL13.glActiveTexture(GL13.GL_TEXTURE0 + i);
+            GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture[i]);
+        }
 
-        GL13.glActiveTexture(GL13.GL_TEXTURE1);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, depthTexture);
-
-        GL13.glActiveTexture(GL13.GL_TEXTURE2);
-        GL11.glBindTexture(GL11.GL_TEXTURE_2D, normalTexture);
-
-        ssaoFXShader.start();
-        ssaoFXShader.connectTextureUnits();
-        ssaoFXShader.loadNumSamples(numSamples);
-        ssaoFXShader.loadKRadius(kRadius);
-        ssaoFXShader.loadKDistanceThreshold(kDistanceThreshold);
+        mainFXShader.start();
+        mainFXShader.connectTextureUnits();
         renderer.renderQuad();
-        ssaoFXShader.stop();
+        mainFXShader.stop();
     }
 
     public void cleanUp(){
-        ssaoFXShader.cleanUp();
+        mainFXShader.cleanUp();
         renderer.cleanUp();
     }
 }

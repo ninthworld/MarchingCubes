@@ -1,23 +1,23 @@
 package org.ninthworld.marchingcubes.engine;
 
-import javafx.geometry.Pos;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
-import org.lwjgl.util.vector.Vector4f;
 import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.fbo.Fbo;
 import org.ninthworld.marchingcubes.fbo.PostProcessing;
 import org.ninthworld.marchingcubes.helper.ProjectionMatrix;
-import org.ninthworld.marchingcubes.helper.SimplexNoise;
-import org.ninthworld.marchingcubes.helper.VoxelData;
+import org.ninthworld.marchingcubes.helper.VectorHelper;
 import org.ninthworld.marchingcubes.models.Loader;
 import org.ninthworld.marchingcubes.models.RawModel;
 import org.ninthworld.marchingcubes.renderers.*;
+import org.ninthworld.marchingcubes.renderers.geometry.CuboidRenderer;
 import org.ninthworld.marchingcubes.renderers.geometry.NormalRenderer;
+import org.ninthworld.marchingcubes.renderers.geometry.PlaneRenderer;
 
-import java.io.File;
+import java.security.Key;
 import java.util.*;
 
 /**
@@ -27,7 +27,8 @@ public class Main {
 
     private Loader loader;
 
-    private MasterRenderer masterRenderer;
+    private PlaneRenderer planeRenderer;
+    private CuboidRenderer cuboidRenderer;
     private SkyboxRenderer skyboxRenderer;
     private AsteroidRenderer asteroidRenderer;
     private NormalRenderer normalRenderer;
@@ -36,18 +37,11 @@ public class Main {
     private CameraEntity camera;
 
     private Fbo multisampleFbo;
-    private Fbo masterFbo;
     private Fbo skyboxFbo;
-    private Fbo normalFbo;
+    private Fbo gridFbo;
+    private Fbo cuboidFbo;
     private Fbo asteroidFbo;
-
-    private Fbo ssaoFXFbo;
-    private Fbo outlineFXFbo;
-    private Fbo simpleFXFbo1;
-    private Fbo simpleFXFbo2;
-    private Fbo simpleFXFbo3;
-    private Fbo simpleFXFbo4;
-    private Fbo simpleFXFbo5;
+    private Fbo asteroidNormalFbo;
 
     private Map<RawModel, List<ModelEntity>> modelEntities;
     private List<AsteroidEntity> asteroidEntities;
@@ -72,26 +66,43 @@ public class Main {
         planeEntities = new ArrayList<>();
 
         Matrix4f projectionMatrix = ProjectionMatrix.create();
-        masterRenderer = new MasterRenderer(loader);
+        planeRenderer = new PlaneRenderer(loader, projectionMatrix);
+        cuboidRenderer = new CuboidRenderer(loader, projectionMatrix);
         skyboxRenderer = new SkyboxRenderer(loader, projectionMatrix);
         asteroidRenderer = new AsteroidRenderer(loader, projectionMatrix);
         normalRenderer = new NormalRenderer(loader, projectionMatrix);
 
         multisampleFbo = new Fbo(Display.getWidth(), Display.getHeight());
-        masterFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         skyboxFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        gridFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        cuboidFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
         asteroidFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        normalFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        ssaoFXFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        outlineFXFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        simpleFXFbo1 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        simpleFXFbo2 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        simpleFXFbo3 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        simpleFXFbo4 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
-        simpleFXFbo5 = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
+        asteroidNormalFbo = new Fbo(Display.getWidth(), Display.getHeight(), Fbo.DEPTH_TEXTURE);
 
         setup();
     }
+
+    private void cleanUp(){
+        planeRenderer.cleanUp();
+        cuboidRenderer.cleanUp();
+        skyboxRenderer.cleanUp();
+        asteroidRenderer.cleanUp();
+        normalRenderer.cleanUp();
+
+        multisampleFbo.cleanUp();
+        skyboxFbo.cleanUp();
+        gridFbo.cleanUp();
+        cuboidFbo.cleanUp();
+        asteroidFbo.cleanUp();
+        asteroidNormalFbo.cleanUp();
+
+        loader.cleanUp();
+
+        PostProcessing.cleanUp();
+        DisplayManager.closeDisplay();
+    }
+
+    CuboidEntity cuboidEntity;
 
     private void setup(){
 
@@ -101,9 +112,9 @@ public class Main {
         AsteroidEntity asteroidEntity1 = new AsteroidEntity(loader, new Vector3f(-64, 64, 64), 32, 8, 16, 64, 0.5, 54321);
         asteroidEntities.add(asteroidEntity1);
 
-//        float cubicLength = asteroidEntity.getVoxelData().getVoxelData().length*asteroidEntity.getScale();
-//        CuboidEntity cuboidEntity = new CuboidEntity(loader, asteroidEntity.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
-//        cuboidEntities.add(cuboidEntity);
+        float cubicLength = 1; //asteroidEntity.getVoxelData().getVoxelData().length*asteroidEntity.getScale();
+        cuboidEntity = new CuboidEntity(loader, asteroidEntity.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
+        cuboidEntities.add(cuboidEntity);
 //
 //        cubicLength = asteroidEntity1.getVoxelData().getVoxelData().length*asteroidEntity1.getScale();
 //        CuboidEntity cuboidEntity1 = new CuboidEntity(loader, asteroidEntity1.getCenterPosition(), new Vector3f(cubicLength, cubicLength, cubicLength));
@@ -126,6 +137,9 @@ public class Main {
     int frames = 0;
 
     float angle = 0;
+    boolean drawCuboid = false;
+    boolean rightMouse = false;
+    boolean updateAsteroid = false;
     private void loop(){
         time = System.nanoTime();
         while(!Display.isCloseRequested()){
@@ -135,6 +149,15 @@ public class Main {
                 Display.setTitle("Marching Cubes - FPS: " + frames);
                 time = System.nanoTime();
                 frames = 0;
+
+                if(updateAsteroid){
+                    loader.cleanRawModel(asteroidEntities.get(0).getRawModel());
+                    asteroidEntities.get(0).generateRawModel(loader);
+                    updateAsteroid = false;
+                    // ADD A REAL RAW MODEL UPDATE QUEUE
+                    // ADD A REAL RAW MODEL UPDATE QUEUE
+                    // ADD A REAL RAW MODEL UPDATE QUEUE
+                }
             }
 
             camera.move();
@@ -147,10 +170,42 @@ public class Main {
                 angle -= Math.PI/200f;
             }
 
-            multisampleFbo.bindFrameBuffer();
-            masterRenderer.renderScene(modelEntities, cuboidEntities, planeEntities, light, camera);
-            multisampleFbo.unbindFrameBuffer();
-            multisampleFbo.resolveToFbo(masterFbo);
+            if(Mouse.isButtonDown(1)){
+                rightMouse = true;
+            }else{
+                rightMouse = false;
+            }
+
+            drawCuboid = false;
+            for(AsteroidEntity asteroidEntity : asteroidEntities){
+                for(int i=0; i<100; i++){
+                    Vector3f point = Vector3f.add(camera.getPosition(), VectorHelper.scalar((float) i, camera.getDirectionVector()), null);
+                    if(point.x >= asteroidEntity.getPosition().x && point.x <= asteroidEntity.getPosition().x + asteroidEntity.getVoxelData().getVoxelData().length &&
+                       point.y >= asteroidEntity.getPosition().y && point.y <= asteroidEntity.getPosition().y + asteroidEntity.getVoxelData().getVoxelData()[0].length &&
+                       point.z >= asteroidEntity.getPosition().z && point.z <= asteroidEntity.getPosition().z + asteroidEntity.getVoxelData().getVoxelData()[0][0].length){
+                        Vector3f voxelPoint = Vector3f.sub(point, asteroidEntity.getPosition(), null);
+                        voxelPoint = new Vector3f((float) Math.floor(voxelPoint.x), (float) Math.floor(voxelPoint.y), (float) Math.floor(voxelPoint.z));
+
+                        if(asteroidEntity.getVoxelData().getVoxelDataAt((int) voxelPoint.x, (int) voxelPoint.y, (int) voxelPoint.z) > 0){
+                            drawCuboid = true;
+                            cuboidEntity.setPosition(Vector3f.add(Vector3f.add(voxelPoint, asteroidEntity.getPosition(), null), new Vector3f(0.5f, 0.5f, 0.5f), null));
+
+                            if(rightMouse){
+                                asteroidEntity.getVoxelData().setVoxelDataAt((int) voxelPoint.x, (int) voxelPoint.y, (int) voxelPoint.z, 0);
+                                updateAsteroid = true;
+
+                                // ADD A REAL RAW MODEL UPDATE QUEUE
+                                // ADD A REAL RAW MODEL UPDATE QUEUE
+                                // ADD A REAL RAW MODEL UPDATE QUEUE
+
+//                                loader.cleanRawModel(asteroidEntity.getRawModel());
+//                                asteroidEntity.generateRawModel(loader);
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
 
             multisampleFbo.bindFrameBuffer();
             skyboxRenderer.renderSkybox(camera);
@@ -158,81 +213,38 @@ public class Main {
             multisampleFbo.resolveToFbo(skyboxFbo);
 
             multisampleFbo.bindFrameBuffer();
-            asteroidRenderer.renderAsteroids(asteroidEntities, light, camera);
+            planeRenderer.render(planeEntities, light, camera);
+            multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.resolveToFbo(gridFbo);
+
+            multisampleFbo.bindFrameBuffer();
+            cuboidRenderer.render((drawCuboid ? cuboidEntities : new ArrayList<CuboidEntity>()), light, camera);
+            multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.resolveToFbo(cuboidFbo);
+
+            multisampleFbo.bindFrameBuffer();
+            asteroidRenderer.render(asteroidEntities, light, camera);
             multisampleFbo.unbindFrameBuffer();
             multisampleFbo.resolveToFbo(asteroidFbo);
 
             List<ModelEntity> models = new ArrayList<>();
             models.addAll(asteroidEntities);
-
-            normalFbo.bindFrameBuffer();
+            multisampleFbo.bindFrameBuffer();
             normalRenderer.render(models, camera);
-            normalFbo.unbindFrameBuffer();
+            multisampleFbo.unbindFrameBuffer();
+            multisampleFbo.resolveToFbo(asteroidNormalFbo);
 
-            ssaoFXFbo.bindFrameBuffer();
-            PostProcessing.doPostProcessingSSAO(asteroidFbo.getColorTexture(), asteroidFbo.getDepthTexture(), normalFbo.getColorTexture(), 15, 0.006f, 4.0f);
-            ssaoFXFbo.unbindFrameBuffer();
-
-            outlineFXFbo.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(ssaoFXFbo.getColorTexture(), asteroidFbo.getDepthTexture(), new Vector4f(0.8f, 0.4f, 0.1f, 0.4f), 2, 0.0015f);
-            outlineFXFbo.unbindFrameBuffer();
-
-            // Fix:
-            // * MasterFBO grid lines are thinner due to depth buffer. Looks better with alpha add.
-            // * Outlines on asteroids are cut off due to asteroid depth buffer
-
-            simpleFXFbo1.bindFrameBuffer();
-            PostProcessing.doPostProcessingLinearizeDepth(skyboxFbo.getDepthTexture());
-            simpleFXFbo1.unbindFrameBuffer();
-
-            simpleFXFbo2.bindFrameBuffer();
-            PostProcessing.doPostProcessingLinearizeDepth(masterFbo.getDepthTexture());
-            simpleFXFbo2.unbindFrameBuffer();
-
-            simpleFXFbo5.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(simpleFXFbo2.getColorTexture(), simpleFXFbo2.getColorTexture(), new Vector4f(0, 0, 0, 1), 1, 0.0015f);
-            simpleFXFbo5.unbindFrameBuffer();
-
-            simpleFXFbo3.bindFrameBuffer();
-            PostProcessing.doPostProcessingLinearizeDepth(asteroidFbo.getDepthTexture());
-            simpleFXFbo3.unbindFrameBuffer();
-
-            simpleFXFbo4.bindFrameBuffer();
-            PostProcessing.doPostProcessingOutline(simpleFXFbo3.getColorTexture(), simpleFXFbo3.getColorTexture(), new Vector4f(0, 0, 0, 1), 2, 0.0015f);
-            simpleFXFbo4.unbindFrameBuffer();
-
-            // Combines colorTextures and linearDepthTextures
-            PostProcessing.doPostProcessingCombine(skyboxFbo.getColorTexture(), simpleFXFbo1.getColorTexture(), masterFbo.getColorTexture(), simpleFXFbo5.getColorTexture(), outlineFXFbo.getColorTexture(), simpleFXFbo4.getColorTexture());
+            PostProcessing.doPostProcessing(
+                    skyboxFbo.getColorTexture(), skyboxFbo.getDepthTexture(),
+                    gridFbo.getColorTexture(), gridFbo.getDepthTexture(),
+                    cuboidFbo.getColorTexture(), cuboidFbo.getDepthTexture(),
+                    asteroidFbo.getColorTexture(), asteroidFbo.getDepthTexture(), asteroidNormalFbo.getColorTexture()
+            );
 
             DisplayManager.updateDisplay();
         }
 
         cleanUp();
-    }
-
-    private void cleanUp(){
-        masterRenderer.cleanUp();
-        skyboxRenderer.cleanUp();
-        asteroidRenderer.cleanUp();
-        normalRenderer.cleanUp();
-
-        multisampleFbo.cleanUp();
-        masterFbo.cleanUp();
-        skyboxFbo.cleanUp();
-        asteroidFbo.cleanUp();
-        normalFbo.cleanUp();
-        ssaoFXFbo.cleanUp();
-        outlineFXFbo.cleanUp();
-        simpleFXFbo1.cleanUp();
-        simpleFXFbo2.cleanUp();
-        simpleFXFbo3.cleanUp();
-        simpleFXFbo4.cleanUp();
-        simpleFXFbo5.cleanUp();
-
-        loader.cleanUp();
-
-        PostProcessing.cleanUp();
-        DisplayManager.closeDisplay();
     }
 
     public static void main(String[] args){

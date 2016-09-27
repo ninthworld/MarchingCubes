@@ -20,6 +20,14 @@ public class CameraEntity extends Entity {
         super(position, rotation);
     }
 
+    public Vector3f getDirectionVector(){
+        return new Vector3f(
+                (float) (Math.sin(this.getRotation().y)*Math.cos(this.getRotation().x)),
+                (float) -Math.sin(this.getRotation().x),
+                (float) -(Math.cos(this.getRotation().y)*Math.cos(this.getRotation().x))
+        );
+    }
+
     public void move(){
 
         float sinYaw = (float) Math.sin(getRotation().getY());
@@ -62,7 +70,7 @@ public class CameraEntity extends Entity {
             float mouseDX = Mouse.getDX();
             float mouseDY = -Mouse.getDY();
             increaseRotation((float) Math.toRadians(mouseDY * mouseSensitivity), (float) Math.toRadians(mouseDX * mouseSensitivity), 0);
-            getRotation().setX((float) Math.max(-maxLook, Math.min(maxLook, getRotation().getX())));
+            this.getRotation().setX(Math.max(-maxLook, Math.min(maxLook, getRotation().getX())));
         }
     }
 }

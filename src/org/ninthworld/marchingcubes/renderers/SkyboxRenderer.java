@@ -75,8 +75,15 @@ public class SkyboxRenderer {
         skyboxShader.stop();
     }
 
+    public void cleanUp(){
+        skyboxShader.cleanUp();
+    }
+
     public void renderSkybox(CameraEntity camera){
-        prepare();
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        GL11.glClearColor(0, 0, 0, 0);
 
         skyboxShader.start();
         skyboxShader.loadViewMatrix(camera);
@@ -88,16 +95,5 @@ public class SkyboxRenderer {
         GL20.glDisableVertexAttribArray(0);
         GL30.glBindVertexArray(0);
         skyboxShader.stop();
-    }
-
-    public void cleanUp(){
-        skyboxShader.cleanUp();
-    }
-
-    public void prepare() {
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        GL11.glClearColor(0, 0, 0, 0);
     }
 }

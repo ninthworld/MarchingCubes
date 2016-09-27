@@ -79,6 +79,35 @@ public class VertexAttribData {
         }
     }
 
+    public void addQuad(Vector3f v1, Vector3f v2, Vector3f v3, Vector3f v4, Vector3f color) {
+        Vector3f normal = new Vector3f();
+        Vector3f.cross(Vector3f.sub(v2, v1, null), Vector3f.sub(v3, v1, null), normal);
+        normal.normalise();
+
+        verticesList.add(v1.x);
+        verticesList.add(v1.y);
+        verticesList.add(v1.z);
+        verticesList.add(v2.x);
+        verticesList.add(v2.y);
+        verticesList.add(v2.z);
+        verticesList.add(v3.x);
+        verticesList.add(v3.y);
+        verticesList.add(v3.z);
+        verticesList.add(v4.x);
+        verticesList.add(v4.y);
+        verticesList.add(v4.z);
+
+        for (int i = 0; i < 4; i++) {
+            colorsList.add(color.x);
+            colorsList.add(color.y);
+            colorsList.add(color.z);
+            normalsList.add(normal.x);
+            normalsList.add(normal.y);
+            normalsList.add(normal.z);
+            indicesList.add(indicesPointer++);
+        }
+    }
+
     public RawModel loadToVaoMaterial(Loader loader) {
         float[] vertices = getFloatArray(verticesList);
         float[] materials = getFloatArray(materialsList);

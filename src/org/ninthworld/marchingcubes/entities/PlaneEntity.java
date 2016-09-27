@@ -24,7 +24,7 @@ public class PlaneEntity extends ModelEntity {
         this.setPosition(position);
     }
 
-    private static RawModel createPlaneEntity(Loader loader, Vector3f dimensions){
+    public static RawModel createPlaneEntity(Loader loader, Vector3f dimensions){
         VertexAttribData vertexAttribData = new VertexAttribData();
 
         float x = dimensions.x/2f;

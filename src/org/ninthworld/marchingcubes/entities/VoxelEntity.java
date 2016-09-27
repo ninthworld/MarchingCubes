@@ -65,7 +65,7 @@ public class VoxelEntity extends ModelEntity {
                         Vector3f v2 = Vector3f.add(pos, vertexMultiplier[triangleConnectionTable[cubeIndex][i+1]], null);
                         Vector3f v3 = Vector3f.add(pos, vertexMultiplier[triangleConnectionTable[cubeIndex][i+2]], null);
 
-                        vertexAttribData.addTriangle(v1, v2, v3, setColor.get(i%setColor.size()));//colorVectors[setColor.get(i%setColor.size())]);
+                        vertexAttribData.addTriangle(v1, v2, v3, setColor.get(i%setColor.size()));
                     }
                 }
             }

@@ -16,10 +16,37 @@ public class CuboidEntity extends ModelEntity {
         super(null);
         this.setPosition(position);
         this.dimensions = dimensions;
-        this.setRawModel(createCuboidEntity(loader, dimensions));
+        this.setRawModel(createCuboidEntityWireframe(loader, dimensions));
     }
 
-    private static RawModel createCuboidEntity(Loader loader, Vector3f dimensions){
+    private static RawModel createCuboidEntityWireframe(Loader loader, Vector3f dimensions){
+        float x = dimensions.x/2f;
+        float y = dimensions.y/2f;
+        float z = dimensions.z/2f;
+
+        float[] vertices = new float[]{
+                -x, -y, -z, x, -y, -z, x, -y, z, -x, -y, z,
+                -x, y, -z, x, y, -z, x, y, z, -x, y, z,
+        };
+
+        float[] colors = new float[]{
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        };
+
+        float[] normals = new float[]{
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+        };
+
+        int[] indices = new int[]{
+                0, 1, 2, 3, 0, 4, 5, 1, 5, 6, 2, 6, 7, 3, 7, 4
+        };
+
+        return loader.loadToVao(vertices, colors, normals, indices);
+    }
+
+    private static RawModel createCuboidEntityTriangles(Loader loader, Vector3f dimensions){
         VertexAttribData vertexAttribData = new VertexAttribData();
 
         float x = dimensions.x/2f;

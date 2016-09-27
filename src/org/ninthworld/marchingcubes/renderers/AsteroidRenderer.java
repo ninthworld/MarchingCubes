@@ -21,8 +21,6 @@ import java.util.Map;
  */
 public class AsteroidRenderer {
 
-    private static final Vector3f clearColor = new Vector3f(0.05f, 0.05f, 0.05f);
-
     private static final String texture0 = "/textures/texture1.png";
     private static final String texture1 = "/textures/texture2.png";
 
@@ -50,8 +48,18 @@ public class AsteroidRenderer {
         asteroidShader.stop();
     }
 
-    public void renderAsteroids(List<AsteroidEntity> asteroidEntities, LightEntity light, CameraEntity camera){
-        prepare();
+    public void cleanUp(){
+        asteroidShader.cleanUp();
+    }
+
+    public void render(List<AsteroidEntity> asteroidEntities, LightEntity light, CameraEntity camera){
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        GL11.glEnable(GL11.GL_DEPTH_TEST);
+        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        GL11.glClearColor(0, 0, 0, 0);
+
+        GL11.glEnable(GL11.GL_CULL_FACE);
+        GL11.glCullFace(GL11.GL_FRONT_FACE);
 
         GL13.glActiveTexture(GL13.GL_TEXTURE0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texture0Id);
@@ -79,6 +87,11 @@ public class AsteroidRenderer {
         }
     }
 
+    private void prepareEntity(ModelEntity modelEntity, AsteroidShader shader) {
+        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(modelEntity.getPosition(), modelEntity.getRotation(), modelEntity.getScale());
+        shader.loadTransformationMatrix(transformationMatrix);
+    }
+
     private void prepareRawModel(RawModel rawModel) {
         GL30.glBindVertexArray(rawModel.getVaoID());
         GL20.glEnableVertexAttribArray(0);
@@ -91,21 +104,5 @@ public class AsteroidRenderer {
         GL20.glDisableVertexAttribArray(1);
         GL20.glDisableVertexAttribArray(2);
         GL30.glBindVertexArray(0);
-    }
-
-    private void prepareEntity(ModelEntity modelEntity, AsteroidShader shader) {
-        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(modelEntity.getPosition(), modelEntity.getRotation(), modelEntity.getScale());
-        shader.loadTransformationMatrix(transformationMatrix);
-    }
-
-    public void cleanUp(){
-        asteroidShader.cleanUp();
-    }
-
-    public void prepare() {
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glEnable(GL11.GL_DEPTH_TEST);
-        GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
-        GL11.glClearColor(clearColor.x, clearColor.y, clearColor.z, 0);
     }
 }
