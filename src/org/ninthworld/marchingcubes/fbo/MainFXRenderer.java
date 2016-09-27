@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector2f;
 import org.ninthworld.marchingcubes.shaders.MainFXShader;
-import org.ninthworld.marchingcubes.shaders.SSAOFXShader;
 
 /**
  * Created by NinthWorld on 9/26/2016.

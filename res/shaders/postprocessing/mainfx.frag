@@ -109,8 +109,11 @@ void main(void){
     vec4 cuboidColor = texture(textures[4], textureCoords).rgba;
     float cuboidDepth = linearizedDepth(textures[5], textureCoords);
 
-    vec4 asteroidColor = applySSAO(texture(textures[6], textureCoords).rgba, textures[5], textures[6]);
+    vec4 asteroidColor = applySSAO(texture(textures[6], textureCoords).rgba, textures[7], textures[8]); //texture(textures[6], textureCoords).rgba;
     float asteroidDepth = linearizedDepth(textures[7], textureCoords);
+
+    vec4 spaceShipColor = texture(textures[9], textureCoords).rgba;
+    float spaceShipDepth = linearizedDepth(textures[10], textureCoords);
 
     gridColor = applyBorderColor(gridColor, textures[3], vec4(0.1, 0.6, 0.8, 0.6), 1, 0.0015);
     gridDepth = applyBorderDepth(gridDepth, textures[3], 2, 0.0015);
@@ -122,12 +125,12 @@ void main(void){
     asteroidDepth = applyBorderDepth(asteroidDepth, textures[7], 2, 0.0015);
 
     // Output
-    int outputCount = 4;
-    vec4 outputColor[] = vec4[](skyboxColor, gridColor, cuboidColor, asteroidColor);
-    float outputDepth[] = float[](skyboxDepth, gridDepth, cuboidDepth, asteroidDepth);
+    int outputCount = 5;
+    vec4 outputColor[] = vec4[](skyboxColor, gridColor, cuboidColor, asteroidColor, spaceShipColor);
+    float outputDepth[] = float[](skyboxDepth, gridDepth, cuboidDepth, asteroidDepth, spaceShipDepth);
 
     // Sort output based on depth
-    int indexOrder[] = int[](0, 1, 2, 3);
+    int indexOrder[] = int[](0, 1, 2, 3, 4);
     for(int i=(outputCount-1); i>=0; i--){
         for(int j=1; j<=i; j++){
             if(outputDepth[indexOrder[j-1]] < outputDepth[indexOrder[j]]){

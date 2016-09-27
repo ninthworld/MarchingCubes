@@ -2,6 +2,9 @@ package org.ninthworld.marchingcubes.engine;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.*;
+import org.lwjgl.opengl.DisplayMode;
+
+import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.glViewport;
 
@@ -10,8 +13,10 @@ import static org.lwjgl.opengl.GL11.glViewport;
  */
 public class DisplayManager {
 
-    private static final int        WIDTH   = 1280;
-    private static final int        HEIGHT  = 720;
+    private static final GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
+    private static final int        WIDTH   = (int)(gd.getDisplayMode().getWidth() * 0.8); //1280;
+    private static final int        HEIGHT  = (int)(gd.getDisplayMode().getHeight() * 0.8); //720;
     private static final int        FPS_CAP = 60;
     private static final boolean    VSYNC   = true;
     private static final String     TITLE   = "Marching Cubes";

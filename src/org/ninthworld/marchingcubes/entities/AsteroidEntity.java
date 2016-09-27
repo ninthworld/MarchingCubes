@@ -1,6 +1,7 @@
 package org.ninthworld.marchingcubes.entities;
 
 import org.lwjgl.util.vector.Vector3f;
+import org.ninthworld.marchingcubes.helper.BoundingBox;
 import org.ninthworld.marchingcubes.helper.SimplexNoise;
 import org.ninthworld.marchingcubes.helper.VoxelData;
 import org.ninthworld.marchingcubes.models.Loader;
@@ -11,12 +12,12 @@ import org.ninthworld.marchingcubes.models.Loader;
 public class AsteroidEntity extends VoxelEntity {
 
     private Vector3f centerPosition;
+    private int width, height, depth;
 
     public AsteroidEntity(Loader loader, Vector3f centerPosition, int cubicLengths, float radius, float noiseAmp, int largestFeature, double persistence, int seed){
         super(new VoxelData(cubicLengths, cubicLengths, cubicLengths));
         this.centerPosition = centerPosition;
-        int width, height, depth;
-        width = height = depth = cubicLengths;
+        this.width = this.height = this.depth = cubicLengths;
         SimplexNoise simplexNoise = new SimplexNoise(largestFeature, persistence, seed);
         Vector3f volumeCenter = new Vector3f(width/2f, height/2f, depth/2f);
         for(int x=0; x<width; x++){
@@ -39,7 +40,11 @@ public class AsteroidEntity extends VoxelEntity {
     }
 
     public Vector3f getCenterPosition() {
-        return centerPosition;
+        return new Vector3f(this.getPosition().x+width/2f, this.getPosition().y+height/2f, this.getPosition().z+depth/2f);
+    }
+
+    public BoundingBox getBoundingBox(){
+        return new BoundingBox(getCenterPosition(), new Vector3f(this.getVoxelData().getVoxelData().length, this.getVoxelData().getVoxelData()[0].length, this.getVoxelData().getVoxelData()[0][0].length));
     }
 
     public void setCenterPosition(Vector3f centerPosition) {

@@ -7,69 +7,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a683535-2d03-4861-9bfd-fb647120f058" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/CombineFXRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/LinearizeDepthFXRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/OutlineFXRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/SSAOFXRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/SimpleFXRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/MasterRenderer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/CombineFXShader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/LinearizeDepthFXShader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/OutlineFXShader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/SSAOFXShader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/shaders/SimpleFXShader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/combine/combine.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/combine/combine.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/linearizeDepth/linearizeDepth.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/linearizeDepth/linearizeDepth.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/outline/outline.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/outline/outline.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/simple/simple.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/simple/simple.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/ssao/ssao.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/shaders/postprocessing/ssao/ssao.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/combine/combine.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/combine/combine.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/linearizeDepth/linearizeDepth.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/linearizeDepth/linearizeDepth.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/outline/outline.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/outline/outline.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/simple/simple.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/simple/simple.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/ssao/ssao.frag" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/ssao/ssao.vert" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/CombineFXRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/LinearizeDepthFXRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/OutlineFXRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/SSAOFXRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/SimpleFXRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/MasterRenderer.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/CombineFXShader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/LinearizeDepthFXShader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/OutlineFXShader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/SSAOFXShader.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/SimpleFXShader.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/engine/Main.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/engine/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/CameraEntity.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/CameraEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/CuboidEntity.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/CuboidEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/PlaneEntity.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/entities/PlaneEntity.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/PostProcessing.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/PostProcessing.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/helper/VertexAttribData.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/helper/VertexAttribData.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/AsteroidRenderer.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/AsteroidRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/SkyboxRenderer.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/SkyboxRenderer.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/geometry/NormalRenderer.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/renderers/geometry/NormalRenderer.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/MainFXRenderer.class" afterPath="$PROJECT_DIR$/out/production/MarchingCubes/org/ninthworld/marchingcubes/fbo/MainFXRenderer.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag" afterPath="$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/DisplayManager.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/DisplayManager.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CameraEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CameraEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CuboidEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CuboidEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/PlaneEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/PlaneEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/PostProcessing.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/PostProcessing.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VertexAttribData.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VertexAttribData.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/AsteroidRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/AsteroidRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/SkyboxRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/SkyboxRenderer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/NormalRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/NormalRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/AsteroidEntity.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/AsteroidEntity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/MainFXRenderer.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/MainFXRenderer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VectorHelper.java" afterPath="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VectorHelper.java" />
     </list>
     <ignored path="SimpleGeometry.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -93,8 +39,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
+            <state relative-caret-position="220">
+              <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -103,9 +49,84 @@
       <file leaf-file-name="AsteroidEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/AsteroidEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+            <state relative-caret-position="425">
+              <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="spaceship.frag" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/shaders/spaceship/spaceship.frag">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-503">
+              <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpaceShipEntity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/SpaceShipEntity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpaceShipShader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/SpaceShipShader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SpaceShipRenderer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/SpaceShipRenderer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VoxelData.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mainfx.frag" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="109">
+              <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VectorHelper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VectorHelper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+              <folding>
+                <element signature="e#351#352#0" expanded="true" />
+                <element signature="e#407#408#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -131,11 +152,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/PlaneShader.java" />
-        <option value="$PROJECT_DIR$/res/shaders/main/main.frag" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/AsteroidShader.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/NoneShader.java" />
-        <option value="$PROJECT_DIR$/res/shaders/postprocessing/none.frag" />
         <option value="$PROJECT_DIR$/res/shaders/postprocessing/none/none.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/NoneEffect.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/NoneFXShader.java" />
@@ -154,7 +170,6 @@
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/SSAOFXRenderer.java" />
         <option value="$PROJECT_DIR$/res/shaders/postprocessing/ssao/ssao.frag" />
         <option value="$PROJECT_DIR$/res/shaders/asteroid/asteroid.frag" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/AsteroidEntity.java" />
         <option value="$PROJECT_DIR$/res/shaders/geometry/plane/plane.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/SimpleFXRenderer.java" />
         <option value="$PROJECT_DIR$/res/shaders/postprocessing/simple/simple.frag" />
@@ -166,7 +181,6 @@
         <option value="$PROJECT_DIR$/res/shaders/postprocessing/combine/combine.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/OutlineFXShader.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainFXShader.java" />
-        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/MainFXRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/PostProcessing.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/SkyboxRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/NormalRenderer.java" />
@@ -174,13 +188,20 @@
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/PlaneRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/CubiodRenderer.java" />
-        <option value="$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VertexAttribData.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/CuboidRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CuboidEntity.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/AsteroidRenderer.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/CameraEntity.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/MainFXRenderer.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/DisplayManager.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/BoundingBox.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/AsteroidEntity.java" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VectorHelper.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/SpaceShipShader.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/SpaceShipRenderer.java" />
+        <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/SpaceShipEntity.java" />
+        <option value="$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag" />
         <option value="$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java" />
       </list>
     </option>
@@ -195,8 +216,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -223,7 +244,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -454,6 +474,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="spaceship" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MarchingCubes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="shaders" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="skybox" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -606,6 +648,7 @@
       </pane>
       <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -618,29 +661,29 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://D:/MEGA/IdeaProjects/MarchingCubes/src/org/ninthworld/marchingcubes/models/Loader.java" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.ninthworld.threedengine.fbo" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders" />
+      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders\postprocessing" />
+      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders\linearizeDepth" />
+      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders\postprocessing\combine" />
+      <recent name="D:\MEGA\IdeaProjects\MarchingCubes\src\org\ninthworld\marchingcubes\fbo" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.ninthworld.marchingcubes.renderers" />
+      <recent name="org.ninthworld.marchingcubes.shaders" />
+      <recent name="org.ninthworld.marchingcubes.renderers.geometry" />
+      <recent name="org.ninthworld.marchingcubes.fbo" />
+      <recent name="org.ninthworld.marchingcubes.entities" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\MEGA\IdeaProjects\MarchingCubes\res\shaders\geometry\plane" />
       <recent name="D:\MEGA\IdeaProjects\MarchingCubes\res\shaders\geometry\cuboid" />
       <recent name="D:\MEGA\IdeaProjects\MarchingCubes\res\shaders\postprocessing\none" />
       <recent name="C:\Users\NinthWorld\IdeaProjects\LowPoly\res" />
       <recent name="C:\Users\NinthWorld\IdeaProjects\SimpleGeometry\shaders\postprocessing" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders\postprocessing" />
-      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders\linearizeDepth" />
-      <recent name="C:\Users\theni_000\IdeaProjects\MarchingCubes\res\shaders\postprocessing\combine" />
-      <recent name="D:\MEGA\IdeaProjects\MarchingCubes\src\org\ninthworld\marchingcubes\fbo" />
-      <recent name="D:\MEGA\IdeaProjects\MarchingCubes\src\org\ninthworld\marchingcubes\shaders" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.ninthworld.marchingcubes.renderers.geometry" />
-      <recent name="org.ninthworld.marchingcubes.fbo" />
-      <recent name="org.ninthworld.marchingcubes.shaders" />
-      <recent name="org.ninthworld.marchingcubes.renderers" />
-      <recent name="org.ninthworld.marchingcubes.entities" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.ninthworld.threedengine.fbo" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -924,22 +967,23 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21881607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21766561" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19400631" sideWeight="0.50292826" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1744186" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19400631" sideWeight="0.49707174" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16666667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16617863" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -950,7 +994,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -966,7 +1009,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="8" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -975,76 +1018,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/res/shaders/postprocessing/ssao/ssao.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="23" selection-start-line="4" selection-start-column="23" selection-end-line="4" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/geometry/normal/normal.vert">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/geometry/normal/normal.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/NormalShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/SimpleFXShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="28" column="71" selection-start-line="28" selection-start-column="71" selection-end-line="28" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/AsteroidShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="72" selection-start-line="13" selection-start-column="72" selection-end-line="13" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/AbstractShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/SSAOFXRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="59" column="133" selection-start-line="59" selection-start-column="76" selection-end-line="59" selection-end-column="133" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/asteroid/asteroid.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/SimpleFXRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -1064,7 +1037,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="35" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1081,7 +1053,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1089,31 +1060,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="28" selection-end-column="69" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainFXShader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/MainFXRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainFXShader.java" />
     <entry file="file://$PROJECT_DIR$/res/shaders/postprocessing/outline/outline.frag">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" column="70" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="70" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1121,7 +1075,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="24" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,7 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="23" column="39" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1159,19 +1111,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/MasterRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
           <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1179,17 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="125" column="62" selection-start-line="125" selection-start-column="62" selection-end-line="125" selection-end-column="62" />
-          <folding>
-            <marker date="1474941971314" expanded="true" signature="3135:5056" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1225,14 +1157,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/PlaneRenderer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
-          <caret line="41" column="38" selection-start-line="41" selection-start-column="38" selection-end-line="41" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/PlaneRenderer.java" />
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/NormalRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="680">
@@ -1273,34 +1198,136 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/CuboidRenderer.java">
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/geometry/CuboidRenderer.java" />
+    <entry file="file://$PROJECT_DIR$/res/shaders/asteroid/asteroid.frag">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="47" column="88" selection-start-line="47" selection-start-column="88" selection-end-line="47" selection-end-column="88" />
+        <state relative-caret-position="300">
+          <caret line="38" column="48" selection-start-line="38" selection-start-column="48" selection-end-line="38" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/main/main.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-448">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/MainShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/DisplayManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="18" column="81" selection-start-line="18" selection-start-column="81" selection-end-line="18" selection-end-column="81" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/BoundingBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="3" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/fbo/MainFXRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VectorHelper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+        <state relative-caret-position="272">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding>
+            <element signature="e#351#352#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/VoxelEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-119">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/helper/VoxelData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/spaceship/spaceship.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-503">
+          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/shaders/SpaceShipShader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/renderers/SpaceShipRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/AsteroidEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
-          <caret line="16" column="45" selection-start-line="16" selection-start-column="45" selection-end-line="16" selection-end-column="45" />
+        <state relative-caret-position="425">
+          <caret line="38" column="38" selection-start-line="38" selection-start-column="38" selection-end-line="38" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/entities/SpaceShipEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/shaders/postprocessing/mainfx.frag">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="132" column="42" selection-start-line="132" selection-start-column="42" selection-end-line="132" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/ninthworld/marchingcubes/engine/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="150" column="27" selection-start-line="150" selection-start-column="27" selection-end-line="150" selection-end-column="27" />
+        <state relative-caret-position="220">
+          <caret line="81" column="50" selection-start-line="81" selection-start-column="50" selection-end-line="81" selection-end-column="50" />
           <folding />
         </state>
       </provider>
