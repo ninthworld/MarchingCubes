@@ -35,16 +35,25 @@ public class AsteroidEntity extends VoxelEntity {
             }
         }
 
-        this.setPosition(new Vector3f(centerPosition.x-width/2f, centerPosition.y-height/2f, centerPosition.z-depth/2f));
+        this.setPosition(centerPosition);
+        //this.setPosition(new Vector3f(centerPosition.x-width/2f, centerPosition.y-height/2f, centerPosition.z-depth/2f));
         this.generateRawModel(loader);
     }
 
-    public Vector3f getCenterPosition() {
-        return new Vector3f(this.getPosition().x+width/2f, this.getPosition().y+height/2f, this.getPosition().z+depth/2f);
+//    public Vector3f getCenterPosition() {
+//        return new Vector3f(this.getPosition().x+width/2f, this.getPosition().y+height/2f, this.getPosition().z+depth/2f);
+//    }
+
+    public Vector3f getDrawPosition(){
+        return Vector3f.sub(this.getPosition(), new Vector3f(this.getVoxelData().getVoxelData().length/2f, this.getVoxelData().getVoxelData()[0].length/2f,this.getVoxelData().getVoxelData()[0][0].length/2f), null);
+    }
+
+    public Vector3f getCenterPosition(){
+        return this.getPosition();
     }
 
     public BoundingBox getBoundingBox(){
-        return new BoundingBox(getCenterPosition(), new Vector3f(this.getVoxelData().getVoxelData().length, this.getVoxelData().getVoxelData()[0].length, this.getVoxelData().getVoxelData()[0][0].length));
+        return new BoundingBox(getPosition(), new Vector3f(this.getVoxelData().getVoxelData().length, this.getVoxelData().getVoxelData()[0].length, this.getVoxelData().getVoxelData()[0][0].length));
     }
 
     public void setCenterPosition(Vector3f centerPosition) {

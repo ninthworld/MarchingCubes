@@ -62,7 +62,7 @@ public class Main {
         light = new LightEntity(new Vector3f(1, 1, 1), new Vector3f(1f, 0.8f, 0.4f));
         light.setAmbient(new Vector3f(0.1f, 0.1f, 0.2f));
 
-        camera = new CameraEntity(new Vector3f(5, 5, 5));
+        camera = new CameraEntity(new Vector3f(25, 25, 25));
         camera.setRotation(new Vector3f((float) Math.PI/6f, (float) -Math.PI/6f, 0f));
 
         modelEntities = new HashMap<>();
@@ -176,6 +176,10 @@ public class Main {
             }
 
             camera.move();
+
+            //spaceShipEntities.get(0).setPosition(Vector3f.add(camera.getPosition(), new Vector3f(0, -5, 0), null));
+
+
             light.setPosition(new Vector3f((float) Math.cos(angle)*10f, 5f, (float) Math.sin(angle)*10f));
 
             if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){
@@ -202,14 +206,14 @@ public class Main {
                 for(int i=0; i<100; i++){
                     Vector3f point = Vector3f.add(camera.getPosition(), VectorHelper.scalar((float) i, camera.getDirectionVector()), null);
                     if(asteroidEntity.getBoundingBox().isPointInBB(point)){
-                        Vector3f voxelPoint = Vector3f.sub(point, asteroidEntity.getPosition(), null);
+                        Vector3f voxelPoint = Vector3f.sub(point, asteroidEntity.getDrawPosition(), null);
                         voxelPoint = new Vector3f((float) Math.floor(voxelPoint.x), (float) Math.floor(voxelPoint.y), (float) Math.floor(voxelPoint.z));
 
                         if(asteroidEntity.getVoxelData().getVoxelDataAt((int) voxelPoint.x, (int) voxelPoint.y, (int) voxelPoint.z) > 0){
                             drawCuboid = true;
-                            cuboidEntityRight.setPosition(Vector3f.add(Vector3f.add(voxelPoint, asteroidEntity.getPosition(), null), new Vector3f(0.5f, 0.5f, 0.5f), null));
+                            cuboidEntityRight.setPosition(Vector3f.add(Vector3f.add(voxelPoint, asteroidEntity.getDrawPosition(), null), new Vector3f(0.5f, 0.5f, 0.5f), null));
                             Vector3f placePos = VectorHelper.floor(Vector3f.sub(voxelPoint, VectorHelper.scalar(1.2f, camera.getDirectionVector()), null));
-                            cuboidEntityLeft.setPosition(Vector3f.add(Vector3f.add(placePos, asteroidEntity.getPosition(), null), new Vector3f(0.5f, 0.5f, 0.5f), null));
+                            cuboidEntityLeft.setPosition(Vector3f.add(Vector3f.add(placePos, asteroidEntity.getDrawPosition(), null), new Vector3f(0.5f, 0.5f, 0.5f), null));
 
                             if(rightMouse){
                                 asteroidEntity.getVoxelData().setVoxelDataAt((int) voxelPoint.x, (int) voxelPoint.y, (int) voxelPoint.z, 0);

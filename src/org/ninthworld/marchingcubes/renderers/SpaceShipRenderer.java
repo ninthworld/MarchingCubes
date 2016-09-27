@@ -5,6 +5,7 @@ import org.lwjgl.opengl.GL13;
 import org.lwjgl.opengl.GL20;
 import org.lwjgl.opengl.GL30;
 import org.lwjgl.util.vector.Matrix4f;
+import org.newdawn.slick.util.pathfinding.navmesh.Space;
 import org.ninthworld.marchingcubes.entities.*;
 import org.ninthworld.marchingcubes.helper.MatrixHelper;
 import org.ninthworld.marchingcubes.models.Loader;
@@ -85,8 +86,8 @@ public class SpaceShipRenderer {
         }
     }
 
-    private void prepareEntity(ModelEntity modelEntity, SpaceShipShader shader) {
-        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(modelEntity.getPosition(), modelEntity.getRotation(), modelEntity.getScale());
+    private void prepareEntity(SpaceShipEntity spaceShipEntity, SpaceShipShader shader) {
+        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(spaceShipEntity.getDrawPosition(), spaceShipEntity.getRotation(), spaceShipEntity.getScale());
         shader.loadTransformationMatrix(transformationMatrix);
     }
 

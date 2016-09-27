@@ -87,8 +87,8 @@ public class AsteroidRenderer {
         }
     }
 
-    private void prepareEntity(ModelEntity modelEntity, AsteroidShader shader) {
-        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(modelEntity.getPosition(), modelEntity.getRotation(), modelEntity.getScale());
+    private void prepareEntity(AsteroidEntity asteroidEntity, AsteroidShader shader) {
+        Matrix4f transformationMatrix = MatrixHelper.createTransformationMatrix(asteroidEntity.getDrawPosition(), asteroidEntity.getRotation(), asteroidEntity.getScale());
         shader.loadTransformationMatrix(transformationMatrix);
     }
 
